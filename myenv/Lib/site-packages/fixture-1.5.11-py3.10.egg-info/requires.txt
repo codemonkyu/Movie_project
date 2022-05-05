@@ -1,0 +1,13 @@
+six>=1.10.0
+
+[decorators]
+nose>=0.9.2
+
+[django]
+django>=1.8
+
+[sqlalchemy]
+SQLAlchemy>=0.4
+
+[sqlobject]
+SQLObject==0.8
