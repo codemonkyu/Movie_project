@@ -30,6 +30,6 @@ router.register('Review', views.ReviewView, 'Review')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    #ReactJS index.html로 변경
-    re_path('.*', TemplateView.as_view(template_name='index.html')),
+
+  
 ]

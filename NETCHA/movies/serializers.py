@@ -25,7 +25,11 @@ class MovieTitleSerializer(serializers.ModelSerializer):
  
 #리뷰 API
 class ReviewSerializer(serializers.ModelSerializer):
+    userName = serializers.SerializerMethodField()
     
+    def get_userName(self,obj):
+        return obj.user.username
+  
     class Meta:
         model = Review
         fields = '__all__'
