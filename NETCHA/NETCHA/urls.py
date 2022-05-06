@@ -21,7 +21,9 @@ from movies import views
 
 
 router = routers.DefaultRouter()
+router.register('Genre', views.GenreView, 'Genre')
 router.register('Movie', views.MovieView, 'Movie')
+router.register('Review', views.ReviewView, 'Review')
 
 
 
