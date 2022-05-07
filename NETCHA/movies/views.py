@@ -32,14 +32,14 @@ class MovieCreate(generics.ListCreateAPIView):
 
 
 #전체 영화 가져오기
-@api_view(['GET'])       
+@api_view(['GET']) 
 def take_movie(request):
     movies = Movie.objects.all()
     serializer = MovieTitleSerializer(movies, many=True)
     return Response(serializer.data)
 
 ##무비 상세정보 가져오기
-api_view(['GET'])       
+api_view(['GET'])
 def take_movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     genre = movie.genres.all()
@@ -68,19 +68,6 @@ def take_movie_search(request, keyword):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##내가 좋아요한 영화 
 
 
@@ -89,3 +76,19 @@ def take_movie_search(request, keyword):
 
 
 ##내가 좋아요한 영화와 장르가 비슷한 영화
+
+
+
+
+
+
+
+## 리뷰 등록  & 삭제 
+
+
+
+
+
+## 내가 리뷰한 영화 모음 
+
+
