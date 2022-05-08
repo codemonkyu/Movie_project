@@ -11,4 +11,6 @@ class User(AbstractBaseUser):
 
     class Meta:
         db_table = "User"
-# Create your models here.
+
+
+#Create your models here.

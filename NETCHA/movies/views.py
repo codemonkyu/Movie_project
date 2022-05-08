@@ -39,7 +39,7 @@ def take_movie(request):
     return Response(serializer.data)
 
 ##무비 상세정보 가져오기
-api_view(['GET'])
+@api_view(['GET'])
 def take_movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     genre = movie.genres.all()
@@ -58,37 +58,115 @@ def take_movie_detail(request, movie_pk):
 def take_movie_search(request, keyword):
     #타이틀 갖고오기
     title_movies = Movie.objects.filter(Q(title__contains=keyword))
+    
     #오버뷰 갖고오기
     overview_movies = Movie.objects.filter(Q(overview__contains=keyword))
+    
+     #장르로 검색
+    genre = Genre.objects.get(name=keyword)
+    genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
+    
     # 영화 제목 
     serializer1 = MovieSerializer(title_movies, many=True)
+    
     # 줄거리 포함
     serializer2 = MovieSerializer(overview_movies, many=True)
-    return Response([serializer1.data, serializer2.data])
+    
+    # 장르 포함
+    serializer3 = MovieSerializer(genre_movies, many=True)
+    return Response([serializer1.data, serializer2.data, serializer3.data])
+
+
+##좋아요 기능
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def movie_like(request, movie_pk):
+  movie = get_object_or_404(Movie, pk=movie_pk)
+  if movie.like.filter(pk=request.user.pk).exists():
+      movie.like.remove(request.user)
+      liking = False     
+  else:
+      movie.like.add(request.user)
+      liking = True
+  
+  count = movie.like_users.count()
+  return Response([liking, count])
 
 
 
-##내가 좋아요한 영화 
+##좋아요한 영화 리스트
+@api_view(['GET'])
+def movie_like_list(request):
+    movies = Movie.objects.filter(Q(like__contains=request.user.pk))
+    serializer = MovieTitleSerializer(movies, many=True)
+    return Response(serializer.data)
 
 
 
+##리뷰 리스트 보여주기
+@api_view(['GET'])
+def review_list(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    reviews = movie.review_set.all()
+    serializer = ReviewSerializer(reviews, many=True)
+    return Response(serializer.data)
 
+
+##리뷰 생성
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])  
+def review_create(request, movie_pk):
+    serializer = ReviewSerializer(data=request.data)
+    movie = get_object_or_404(Movie, pk=movie_pk)
+
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user, movie=movie)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+##리뷰 삭제(작성자, 관리자만)
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def review_delete(request, movie_pk, review_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    review = movie.review_set.get(pk=review_pk)
+    
+    if not request.user.reviews.filter(pk=review_pk).exists():
+      return Response({'message': '권한이 없습니다.'})
+    else:
+      review.delete()
+      return Response({ 'id': review_pk })
+    
+    
+    
+##리뷰 수정(작성자, 관리자만)
+@api_view(['Get','POST'])
+@permission_classes([IsAuthenticated])
+def review_edit(request, movie_pk, review_pk):
+    if request.method == 'GET':
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        review = movie.review_set.get(pk=review_pk)
+        serializer = ReviewSerializer(review, many=True)
+        return Response(serializer.data)
+    
+            
+    else:
+        serializer = ReviewSerializer(data=request.data)
+        
+        if serializer.is_valid(raise_exception=True):
+                serializer.save(user=request.user, review=review)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    
+            
+            
+#장르별 리스트 출력
+@api_view(['GET'])
+def genre_list(request, genre_name):
+    genre = get_object_or_404(Genre, name=genre_name)
+    movies=Movie.objects.filter(Q(genres__contains=genre.pk))
+    serializer =MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
 
 ##내가 좋아요한 영화와 장르가 비슷한 영화
-
-
-
-
-
-
-
-## 리뷰 등록  & 삭제 
-
-
-
-
-
-## 내가 리뷰한 영화 모음 
-
-

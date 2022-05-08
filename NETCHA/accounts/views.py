@@ -40,12 +40,3 @@ def get_user(request):
     user = get_object_or_404(get_user_model(), username=request.user.username)
     serializer = UserSerializer(user)
     return Response(serializer.data)
-
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def profile(request):
-    user = get_object_or_404(get_user_model(), username=request.user.username)
-    serializer = UserSerializer(user)
-
-    return Response(serializer.data)
