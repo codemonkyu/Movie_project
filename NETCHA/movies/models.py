@@ -25,14 +25,15 @@ class Movie(models.Model):
     vote_count = models.IntegerField(validators=[MinValueValidator(0)])  # 평점 투표 수 
     popularity = models.FloatField(validators=[MinValueValidator(0)]) #인기점수
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')  # 좋아요 수: 웹 사용자에게 받을 예정
-
+    
 
 # 댓글
 class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reviews")
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    
     content = models.TextField()
     rank = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
