@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import MovieSerializer, GenreSerializer, ReviewSerializer, MovieTitleSerializer
 from .models import  Movie, Genre, Review
+from accounts.models import  User
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 import random
@@ -62,19 +63,21 @@ def take_movie_search(request, keyword):
     #오버뷰 갖고오기
     overview_movies = Movie.objects.filter(Q(overview__contains=keyword))
     
-     #장르로 검색
-    genre = Genre.objects.get(name=keyword)
-    genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
-    
+    #장르로 검색
+    genres = Genre.objects.filter(name=keyword)
+
     # 영화 제목 
     serializer1 = MovieSerializer(title_movies, many=True)
     
     # 줄거리 포함
     serializer2 = MovieSerializer(overview_movies, many=True)
-    
-    # 장르 포함
-    serializer3 = MovieSerializer(genre_movies, many=True)
-    return Response([serializer1.data, serializer2.data, serializer3.data])
+
+    if genres.exists():
+        genre=genres.values()[0]
+        genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
+        serializer3 = MovieSerializer(genre_movies, many=True)
+        return Response([serializer1.data, serializer2.data, serializer3.data])
+    return Response([serializer1.data, serializer2.data])
 
 
 ##좋아요 기능
@@ -89,7 +92,7 @@ def movie_like(request, movie_pk):
       movie.like.add(request.user)
       liking = True
   
-  count = movie.like_users.count()
+  count = movie.like.count()
   return Response([liking, count])
 
 
@@ -97,7 +100,8 @@ def movie_like(request, movie_pk):
 ##좋아요한 영화 리스트
 @api_view(['GET'])
 def movie_like_list(request):
-    movies = Movie.objects.filter(Q(like__contains=request.user.pk))
+    user=request.user
+    movies = user.like_movies.all()
     serializer = MovieTitleSerializer(movies, many=True)
     return Response(serializer.data)
 
