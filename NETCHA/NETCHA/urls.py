@@ -30,5 +30,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('movies/', include('movies.urls')),
-    path('accounts/', include('accounts.urls')) 
+    path('accounts/', include('accounts.urls')),
+    path('allauth', include('allauth.urls')),
 ]
