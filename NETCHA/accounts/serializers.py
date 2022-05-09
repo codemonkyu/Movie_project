@@ -7,9 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
     Password = serializers.CharField(write_only=True)
     
     
-    
     class Meta:
         model = get_user_model
         fields = '__all__'
-
-
