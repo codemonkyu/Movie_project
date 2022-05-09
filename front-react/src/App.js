@@ -1,8 +1,12 @@
-import React from "react";
-import "./App.css";
+import WelcomPage from "./pages/WelcomPage/welcomPage";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <Router>
+      <WelcomPage />
+    </Router>
+  );
 }
 
 export default App;
