@@ -31,7 +31,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('movies/', include('movies.urls')),
     path('accounts/', include('accounts.urls')),
-    path('accounts/', include('allauth.urls')),
+    path('allauth/', include('allauth.urls')),
     path('accounts/', include('dj_rest_auth.urls')),
-    path('accounts/', include('dj_rest_auth.registration.urls')),
+    path('register/', include('dj_rest_auth.registration.urls')),
 ]
