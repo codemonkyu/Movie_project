@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const SignUp = () => {
   let [fade, setFade] = useState("");
   let [bgFade, setBgFade] = useState("");
   let [buttonState, setButtonState] = useState("");
-  let [inputName, setInputName] = useState("");
-  let [inputNickname, setInputNickname] = useState("");
   let [inputEmail, setInputEmail] = useState("");
   let [inputPw, setInputPw] = useState("");
   let [inputPwValidate, setInputPwValidate] = useState("");
-  const check = inputEmail.includes("@") && inputPw > 3 && inputPwValidate > 3;
+  const check = inputEmail.includes("@") && inputPw.length > 3 && inputPwValidate.length > 3;
 
-  const handleInputName = (e) => {
-    setInputName(e.target.value);
-  };
-  const handleInputNickname = (e) => {
-    setInputNickname(e.target.value);
-  };
 
   const handleInputEmail = (e) => {
     setInputEmail(e.target.value);
@@ -31,6 +24,41 @@ const SignUp = () => {
     setInputPwValidate(e.target.value);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const user = {
+      email: inputEmail,
+      password1: inputPw,
+      password2: inputPwValidate
+    }
+
+    // 유효성 검사
+    if(inputPw !== inputPwValidate) {
+      alert('비밀번호와 비밀번호 확인이 일치하지 않습니다')
+      return false
+    }
+
+    axios.post('http://127.0.0.1:8000/register/', user)
+      .then(res => {
+        if (res.data.access_token) {
+          console.log(res.data.access_token)
+          alert('가입을 축하드립니다!')
+          window.location.replace('/loginpage')
+          // 사용하려면 App.js에서 /로 라우팅해야 한다
+        } else {
+          setInputEmail('')
+          setInputPw('')
+          setInputPwValidate('')
+          localStorage.clear()
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert('이미 존재하는 아이디 입니다.')
+      })
+  }
+
   useEffect(() => {
     setFade("end");
     setBgFade("bg-end");
@@ -41,7 +69,6 @@ const SignUp = () => {
   }, []);
 
   useEffect(() => {
-    console.log(check);
     if (check) {
       setButtonState("able-button");
     }
@@ -60,24 +87,6 @@ const SignUp = () => {
         <div id="main-holder" className={"start " + fade}>
           <h1 className="login-header">회원가입</h1>
           <form id="login-form">
-            <input
-              value={inputName}
-              onChange={handleInputName}
-              type="text"
-              name="name"
-              id="username-field"
-              className="login-form-field"
-              placeholder="Name"
-            />
-            <input
-              value={inputNickname}
-              onChange={handleInputNickname}
-              type="text"
-              name="nickname"
-              id="password-field"
-              className="login-form-field"
-              placeholder="Nickname"
-            />
             <input
               value={inputEmail}
               onChange={handleInputEmail}
@@ -106,6 +115,7 @@ const SignUp = () => {
               placeholder="Password"
             />
             <input
+              onClick={onSubmit}
               disabled={!check}
               type="submit"
               value="회원가입"
