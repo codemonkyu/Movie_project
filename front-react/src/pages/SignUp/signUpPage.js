@@ -1,10 +1,35 @@
-import "./signUpPage.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
   let [fade, setFade] = useState("");
   let [bgFade, setBgFade] = useState("");
+  let [buttonState, setButtonState] = useState("");
+  let [inputName, setInputName] = useState("");
+  let [inputNickname, setInputNickname] = useState("");
+  let [inputEmail, setInputEmail] = useState("");
+  let [inputPw, setInputPw] = useState("");
+  let [inputPwValidate, setInputPwValidate] = useState("");
+  const check = inputEmail.includes("@") && inputPw > 3 && inputPwValidate > 3;
+
+  const handleInputName = (e) => {
+    setInputName(e.target.value);
+  };
+  const handleInputNickname = (e) => {
+    setInputNickname(e.target.value);
+  };
+
+  const handleInputEmail = (e) => {
+    setInputEmail(e.target.value);
+  };
+
+  const handleInputPw = (e) => {
+    setInputPw(e.target.value);
+  };
+
+  const handleInputPwValidate = (e) => {
+    setInputPwValidate(e.target.value);
+  };
 
   useEffect(() => {
     setFade("end");
@@ -14,6 +39,16 @@ const SignUp = () => {
       setBgFade("");
     };
   }, []);
+
+  useEffect(() => {
+    console.log(check);
+    if (check) {
+      setButtonState("able-button");
+    }
+    return () => {
+      setButtonState("");
+    };
+  }, [check]);
 
   return (
     <div className={"login-bg bg-start " + bgFade}>
@@ -26,29 +61,58 @@ const SignUp = () => {
           <h1 className="login-header">회원가입</h1>
           <form id="login-form">
             <input
+              value={inputName}
+              onChange={handleInputName}
               type="text"
-              name="username"
+              name="name"
               id="username-field"
               className="login-form-field"
-              placeholder="Username"
+              placeholder="Name"
             />
             <input
-              type="eamil"
-              name="password"
+              value={inputNickname}
+              onChange={handleInputNickname}
+              type="text"
+              name="nickname"
               id="password-field"
               className="login-form-field"
-              placeholder="e-mail"
+              placeholder="Nickname"
             />
             <input
+              value={inputEmail}
+              onChange={handleInputEmail}
+              type="email"
+              name="email"
+              id="password-field"
+              className="login-form-field"
+              placeholder="E-mail"
+            />
+            <input
+              value={inputPw}
+              onChange={handleInputPw}
               type="password"
               name="password"
               id="password-field"
               className="login-form-field"
               placeholder="Password"
             />
-            <input type="submit" value="회원가입" id="login-form-submit" />
+            <input
+              value={inputPwValidate}
+              onChange={handleInputPwValidate}
+              type="password"
+              name="password"
+              id="password-field"
+              className="login-form-field"
+              placeholder="Password"
+            />
+            <input
+              disabled={!check}
+              type="submit"
+              value="회원가입"
+              className={"disable-button " + buttonState}
+            />
             <p>
-              이미 계정이 있으신가요? <Link to={`/loginPage`}>로그인</Link>
+              이미 계정이 있으신가요? <Link to={'/loginpage'}>로그인</Link>
             </p>
           </form>
         </div>
