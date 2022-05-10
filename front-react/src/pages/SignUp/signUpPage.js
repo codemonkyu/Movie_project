@@ -1,19 +1,19 @@
 import "./signUpPage.css";
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  let [fade, setFade] = useState("");
+  let [bgFade, setBgFade] = useState("");
 
-  let [fade, setFade] = useState('');
-  let [bgFade, setBgFade] = useState('');
-
-  useEffect( () => {
-    setFade('end')
-    setBgFade('bg-end')
+  useEffect(() => {
+    setFade("end");
+    setBgFade("bg-end");
     return () => {
-      setFade('')
-      setBgFade('')
-    }
-  }, [])
+      setFade("");
+      setBgFade("");
+    };
+  }, []);
 
   return (
     <div className={"login-bg bg-start " + bgFade}>
@@ -22,7 +22,7 @@ const SignUp = () => {
       </div>
       <div className="box"></div>
       <div className="login-body">
-        <div id="main-holder" className={"start " + fade} >
+        <div id="main-holder" className={"start " + fade}>
           <h1 className="login-header">회원가입</h1>
           <form id="login-form">
             <input
@@ -33,13 +33,6 @@ const SignUp = () => {
               placeholder="Username"
             />
             <input
-              type="password"
-              name="password"
-              id="password-field"
-              className="login-form-field"
-              placeholder="Password"
-            />
-            <input
               type="eamil"
               name="password"
               id="password-field"
@@ -47,10 +40,16 @@ const SignUp = () => {
               placeholder="e-mail"
             />
             <input
-              type="submit"
-              value="회원가입"
-              id="login-form-submit"
+              type="password"
+              name="password"
+              id="password-field"
+              className="login-form-field"
+              placeholder="Password"
             />
+            <input type="submit" value="회원가입" id="login-form-submit" />
+            <p>
+              이미 계정이 있으신가요? <Link to={`/loginPage`}>로그인</Link>
+            </p>
           </form>
         </div>
       </div>

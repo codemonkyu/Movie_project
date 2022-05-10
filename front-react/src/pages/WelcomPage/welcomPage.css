@@ -1,7 +1,7 @@
 .main-bg {
   width: 100%;
   height: 100vh;
-  background-image: url(/Users/lts/Desktop/react/movie/public/img/백그라운드.png);
+  background-image: url("../../../public/img/백그라운드.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -70,5 +70,5 @@
 }
 
 .box-margin {
-  margin-top: 15px
+  margin-top: 15px;
 }

@@ -2,24 +2,22 @@ import "./loginPage.css";
 import React, { useEffect, useState } from "react";
 import SignUp from "../SignUp/signUpPage";
 import { Routes, Route, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   let navigate = useNavigate();
 
+  let [fade, setFade] = useState("");
+  let [bgFade, setBgFade] = useState("");
 
-  let [fade, setFade] = useState('');
-  let [bgFade, setBgFade] = useState('');
-
-
-  useEffect( () => {
-    setFade('end')
-    setBgFade('bg-end')
+  useEffect(() => {
+    setFade("end");
+    setBgFade("bg-end");
     return () => {
-      setFade('')
-      setBgFade('')
-    }
-  }, [])
+      setFade("");
+      setBgFade("");
+    };
+  }, []);
 
   return (
     <div>
@@ -50,7 +48,9 @@ const LoginPage = () => {
                 placeholder="Password"
               />
               <button id="login-form-submit"> 로그인 </button>
-              <button id="login-form-submit" onClick={() => {navigate("/signup")}}> 회원가입 </button>
+              <p>
+                아직 계정이 없나요? <Link to={`/signUp`}>가입하세요!</Link>
+              </p>
             </form>
           </div>
         </div>
