@@ -75,8 +75,8 @@ def take_movie_search(request, keyword):
 
     if genres.exists():
         for genre in genres:
-            genre=genres.values()[0]
-            genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
+
+            genre_movies=Movie.objects.filter(genres__id__contains=genre.pk)
             serializer3 = MovieSerializer(genre_movies, many=True)
             return Response([serializer1.data, serializer2.data, serializer3.data])
     return Response([serializer1.data, serializer2.data])
@@ -176,3 +176,4 @@ def genre_list(request, genre_name):
 
 
 ##내가 좋아요한 영화와 장르가 비슷한 영화
+
