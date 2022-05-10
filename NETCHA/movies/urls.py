@@ -7,6 +7,7 @@ urlpatterns = [
     path('take_movie/', views.take_movie),
 
     # 세부 영화 (movie_pk 검색)
+
     path('take_movie_detail/<int:movie_pk>/', views.take_movie_detail),
 
     # keyword로 검색
@@ -34,3 +35,4 @@ urlpatterns = [
     path('review_delete/<int:movie_pk>/', views.review_delete),
     
 ]
+
