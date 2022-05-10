@@ -73,10 +73,11 @@ def take_movie_search(request, keyword):
     serializer2 = MovieSerializer(overview_movies, many=True)
 
     if genres.exists():
-        genre=genres.values()[0]
-        genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
-        serializer3 = MovieSerializer(genre_movies, many=True)
-        return Response([serializer1.data, serializer2.data, serializer3.data])
+        for genre in genres:
+            genre_movies=Movie.objects.filter(genres__id__contains=genre.pk)
+            serializer3 = MovieSerializer(genre_movies, many=True)
+            return Response([serializer1.data, serializer2.data, serializer3.data])
+        
     return Response([serializer1.data, serializer2.data])
 
 
@@ -168,9 +169,10 @@ def review_edit(request, movie_pk, review_pk):
 @api_view(['GET'])
 def genre_list(request, genre_name):
     genre = get_object_or_404(Genre, name=genre_name)
-    movies=Movie.objects.filter(Q(genres__contains=genre.pk))
+    movies=Movie.objects.filter(Q(genres__id__contains=genre.pk))
     serializer =MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 
 ##내가 좋아요한 영화와 장르가 비슷한 영화
+
