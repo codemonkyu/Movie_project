@@ -7,5 +7,6 @@ urlpatterns = [
 
     # 세부 영화 (movie_pk 검색)
     path('take_movie_detail/<int:movie_pk>', views.take_movie_detail),
-    path('movie_genre_list', views.genre_list),
+    path('genre_list/<genre_name>', views.genre_list),
+    path('movie_search/<keyword>', views.take_movie_search)
 ] 

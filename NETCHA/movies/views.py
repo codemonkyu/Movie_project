@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, serializers, status, generics
 from rest_framework.response import Response
@@ -64,7 +65,7 @@ def take_movie_search(request, keyword):
     overview_movies = Movie.objects.filter(Q(overview__contains=keyword))
     
     #장르로 검색
-    genres = Genre.objects.filter(name=keyword)
+    genres = Genre.objects.filter(Q(name=keyword))
 
     # 영화 제목 
     serializer1 = MovieSerializer(title_movies, many=True)
@@ -73,10 +74,11 @@ def take_movie_search(request, keyword):
     serializer2 = MovieSerializer(overview_movies, many=True)
 
     if genres.exists():
-        genre=genres.values()[0]
-        genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
-        serializer3 = MovieSerializer(genre_movies, many=True)
-        return Response([serializer1.data, serializer2.data, serializer3.data])
+        for genre in genres:
+            genre=genres.values()[0]
+            genre_movies=Movie.objects.filter(Q(genres__contains=genre.pk))
+            serializer3 = MovieSerializer(genre_movies, many=True)
+            return Response([serializer1.data, serializer2.data, serializer3.data])
     return Response([serializer1.data, serializer2.data])
 
 
@@ -162,14 +164,14 @@ def review_edit(request, movie_pk, review_pk):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     
-            
-            
+           
+                    
 #장르별 리스트 출력
 @api_view(['GET'])
 def genre_list(request, genre_name):
     genre = get_object_or_404(Genre, name=genre_name)
-    movies=Movie.objects.filter(Q(genres__contains=genre.pk))
-    serializer =MovieSerializer(movies, many=True)
+    movies = Movie.objects.filter(Q(genres__id__contains=genre.pk))
+    serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 
