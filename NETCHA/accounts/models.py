@@ -1,12 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser	# AbstractUser 불러오기
-
+from django.contrib.auth.models import AbstractUser
+from .managers import CustomUserManager
+from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
-    email = models.EmailField("이메일", max_length=100)
-    username = models.CharField("유저이름", max_length=100, unique=True)
+    username = None
+    email = models.EmailField(_('email address'), unique=True)
 
-
-    USERNAME_FIELD = "username"
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    spouse_name = models.CharField(blank=True, max_length=100)
+    date_of_birth = models.DateField(blank=True, null=True)
     
+
+    def __str__(self):
+        return self.email
