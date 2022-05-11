@@ -14,13 +14,13 @@ urlpatterns = [
     path('search/<keyword>/', views.take_movie_search),
 
     # 좋아요 기능
-    path('like/', views.movie_like),
+    path('like/<int:movie_pk>/', views.movie_like),
 
     # 좋아요 리스트
     path('like_list/', views.movie_like_list),
 
     # 장르별 리스트
-    path('genre/<genre_name>', views.genre_list),
+    path('genre/<genre_name>/', views.genre_list),
 
     # 리뷰 리스트
     path('review/<int:movie_pk>/', views.review_list),
@@ -29,7 +29,7 @@ urlpatterns = [
     path('review_create/<int:movie_pk>/', views.review_create),
 
     # 리뷰 수정
-    path('review_edit/<int:movie_pk>/', views.review_create),
+    path('review_edit/<int:review_pk>/', views.review_create),
 
     # 리뷰 삭제
     path('review_delete/<int:movie_pk>/', views.review_delete),

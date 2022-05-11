@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LoginPage from "../Login/loginPage";
 import SignUp from "../SignUp/signUpPage";
+import Main from "../MainPage/Main";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
@@ -39,9 +40,10 @@ const WelcomPage = () => {
             </div>
           }
         />
-        <Route path="/loginpage" element={<LoginPage />} />
+        <Route path="/loginpage/*" element={<LoginPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<div> 없는 페이지 </div>} />
+        <Route path="/MainPage" element={<Main />} />
       </Routes>
     </div>
   );

@@ -146,22 +146,14 @@ def review_delete(request, movie_pk, review_pk):
     
     
 ##리뷰 수정(작성자, 관리자만)
-@api_view(['Get','POST'])
+@api_view(['PUT','GET'])
 @permission_classes([IsAuthenticated])
-def review_edit(request, movie_pk, review_pk):
-    if request.method == 'GET':
-        movie = get_object_or_404(Movie, pk=movie_pk)
-        review = movie.review_set.get(pk=review_pk)
-        serializer = ReviewSerializer(review, many=True)
+def review_edit(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    serializer = ReviewSerializer(review, data=request.data)
+    if serializer.is_valid(raise_exception=True) : 
+        serializer.save()
         return Response(serializer.data)
-    
-            
-    else:
-        serializer = ReviewSerializer(data=request.data)
-        
-        if serializer.is_valid(raise_exception=True):
-                serializer.save(user=request.user, review=review)
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     
            
@@ -173,6 +165,7 @@ def genre_list(request, genre_name):
     movies = Movie.objects.filter(Q(genres__id__contains=genre.pk))
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
+
 
 
 ##내가 좋아요한 영화와 장르가 비슷한 영화
