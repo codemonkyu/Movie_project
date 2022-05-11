@@ -63,30 +63,28 @@ def take_movie_detail(request, movie_pk):
 
 
 ##무비 검색 (타이블 / 줄거리)
-@api_view(['GET'])    
+@api_view(['GET'])
 def take_movie_search(request, keyword):
+    movie_list = []
+
     #타이틀 갖고오기
     title_movies = Movie.objects.filter(Q(title__contains=keyword))
-    
+    movie_list.extend(title_movies)
+
     #오버뷰 갖고오기
     overview_movies = Movie.objects.filter(Q(overview__contains=keyword))
-    
+    movie_list.extend(overview_movies)
+
     #장르로 검색
     genres = Genre.objects.filter(Q(name=keyword))
 
-    # 영화 제목 
-    serializer1 = MovieSerializer(title_movies, many=True)
-    
-    # 줄거리 포함
-    serializer2 = MovieSerializer(overview_movies, many=True)
-
     if genres.exists():
         for genre in genres:
-
-            genre_movies=Movie.objects.filter(genres__id__contains=genre.pk)
-            serializer3 = MovieSerializer(genre_movies, many=True)
-            return Response([serializer1.data, serializer2.data, serializer3.data])
-    return Response([serializer1.data, serializer2.data])
+            genre_movies=Movie.objects.filter(genres_id__contains=genre.pk)
+            movie_list.extend(genre_movies)
+    list=set(movie_list)
+    serializer1 = MovieSerializer(list, many=True)
+    return Response([serializer1.data])
 
 
 ##좋아요 기능
