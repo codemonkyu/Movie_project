@@ -40,6 +40,13 @@ def take_movie(request):
     serializer = MovieTitleSerializer(movies, many=True)
     return Response(serializer.data)
 
+##8점이상 영화 (toprate)
+@api_view(['GET']) 
+def movie_over8(request):
+    movies = Movie.objects.filter(vote_average__gte=8.0)
+    serializer = MovieTitleSerializer(movies, many=True)
+    return Response(serializer.data)
+
 ##무비 상세정보 가져오기
 @api_view(['GET'])
 def take_movie_detail(request, movie_pk):
@@ -120,12 +127,14 @@ def review_list(request, movie_pk):
 
 ##리뷰 생성
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])  
+@permission_classes([IsAuthenticated])
 def review_create(request, movie_pk):
     serializer = ReviewSerializer(data=request.data)
     movie = get_object_or_404(Movie, pk=movie_pk)
 
     if serializer.is_valid(raise_exception=True):
+        if Review.objects.filter(user_id=request.user.pk, movie_id = movie_pk).exists():
+            return Response({'message':'이미 작성한 리뷰가 있습니다.'})
         serializer.save(user=request.user, movie=movie)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 

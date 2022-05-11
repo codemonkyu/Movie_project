@@ -34,5 +34,8 @@ urlpatterns = [
     # 리뷰 삭제
     path('review_delete/<int:movie_pk>/', views.review_delete),
     
+    # 8점이상 영화
+    path('toprated/', views.movie_over8),
 ]
+
 
