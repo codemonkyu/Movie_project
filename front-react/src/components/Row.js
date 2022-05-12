@@ -16,6 +16,7 @@ function Row({ title, fetchUrl }) {
     setVisible(active);
   };
 
+  // axios 서버에 데이터 요청
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl, {
@@ -37,8 +38,8 @@ function Row({ title, fetchUrl }) {
         {movies.map((movie) => (
           <img
             onClick={() => {
-              setMovie(movie)
-              onSetIsVisible(true)
+              setMovie(movie);
+              onSetIsVisible(true);
             }}
             key={movie.id}
             className="row__poster"
@@ -47,18 +48,17 @@ function Row({ title, fetchUrl }) {
           />
         ))}
       </div>
+
       <div>
         {isVisble && <BodyBlackoutStyle onSetIsVisible={onSetIsVisible} />}
-        {isVisble &&
-
+        {isVisble && (
           <Modal
             key={movie.id}
             coverImg={`${base_url}${movie.poster_path}`}
             title={movie.title}
             setVisible={setVisible}
           />
-
-        }
+        )}
       </div>
     </div>
   );
