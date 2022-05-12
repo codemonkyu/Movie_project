@@ -1,16 +1,3 @@
-.mainBg-start {
-    opacity: 0.85;
-}
-
-.mainBg-end {
-    opacity: 1;
-    transition: all 0.7s;
-}
-
-.main-body {
-    height: 100vh;
-    padding-top: 70px;
-    background-color: black;
-    background-size: cover;
-    color: white;
+* {
+  margin: 0;
 }
