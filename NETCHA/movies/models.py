@@ -18,6 +18,7 @@ class Movie(models.Model):
     release_date = models.TextField()  # 개봉연도
     genres = models.ManyToManyField(Genre, blank=True)  # 장르
     poster_path = models.TextField()  # 포스터
+    backdrop_path = models.TextField() #백그라운드 포스터
     overview = models.TextField()  # 줄거리
     adult = models.BooleanField()  # 19금
     runtime = models.IntegerField(validators=[MinValueValidator(0)]) #상영시간
