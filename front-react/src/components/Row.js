@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "./axios";
+import axios from "../axios";
 import "./Row.css";
 
 const base_url = "http://image.tmdb.org/t/p/original/";
@@ -15,12 +15,9 @@ function Row({ title, fetchUrl }) {
         },
       });
       setMoives(request.data);
-      return request;
     }
     fetchData();
   }, [fetchUrl]);
-
-  console.log(movies);
 
   return (
     /*컨테이너*/

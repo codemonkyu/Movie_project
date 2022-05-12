@@ -1,11 +1,13 @@
 import React from "react";
-import Row from "../../Row";
-import requests from "../../requests";
+import Row from "../../components/Row";
+import requests from "../../components/requests";
+import Banner from "./Banner";
+import "./Main.css";
 
 function Main() {
   return (
-    <div className="App">
-      <h1>NETCHA</h1>
+    <div className="main">
+      <Banner />
       <Row title="TopRated" fetchUrl={requests.fetchTopRated} />
       <Row title="Actions" fetchUrl={requests.fetchActions} />
       <Row title="Adventures" fetchUrl={requests.fetchAdventures} />

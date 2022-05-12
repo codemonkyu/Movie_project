@@ -40,11 +40,11 @@ def take_movie(request):
     serializer = MovieTitleSerializer(movies, many=True)
     return Response(serializer.data)
 
-##8점이상 영화 (toprate)
+##8점이상 영화 (TOPRATED)
 @api_view(['GET']) 
 def movie_over8(request):
     movies = Movie.objects.filter(vote_average__gte=8.0)
-    serializer = MovieTitleSerializer(movies, many=True)
+    serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 ##무비 상세정보 가져오기
