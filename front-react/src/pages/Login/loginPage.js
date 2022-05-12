@@ -26,12 +26,11 @@ const LoginPage = () => {
     axios
       .post("http://127.0.0.1:8000/accounts/login/", user)
       .then((res) => {
-
         if (res.data.access_token) {
           localStorage.clear();
           localStorage.setItem("token", res.data.access_token);
           console.log(res.data.access_token);
-          navigate('/mainpage')
+          navigate("/mainpage");
         } else {
           setInputEmail("");
           setInputPw("");
@@ -78,7 +77,7 @@ const LoginPage = () => {
       </Routes>
       <div className={"login-bg bg-start " + bgFade}>
         <div className="logo-box">
-          <img className="logo" src="img/넷플릭스.png" />
+          <img className="logo" src="img/Navlogo.png" />
         </div>
         <div className="box"></div>
         <div className="login-body">
