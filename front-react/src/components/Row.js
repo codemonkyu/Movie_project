@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import "./Row.css";
+import Modal from "./Modal";
+import BodyBlackoutStyle from "./BodyBlackoutStyle";
 
 const base_url = "http://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchUrl }) {
   const [movies, setMoives] = useState([]);
+  const [movie, setMovie] = useState({});
+
+  // Modal창을 보여줄지 말지
+  const [isVisble, setVisible] = useState(false);
+  const onSetIsVisible = (active) => {
+    setVisible(active);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -27,12 +36,29 @@ function Row({ title, fetchUrl }) {
       <div className="row__posters">
         {movies.map((movie) => (
           <img
+            onClick={() => {
+              setMovie(movie)
+              onSetIsVisible(true)
+            }}
             key={movie.id}
             className="row__poster"
             src={`${base_url}${movie.poster_path}`}
             alt={movie.name}
           />
         ))}
+      </div>
+      <div>
+        {isVisble && <BodyBlackoutStyle onSetIsVisible={onSetIsVisible} />}
+        {isVisble &&
+
+          <Modal
+            key={movie.id}
+            coverImg={`${base_url}${movie.poster_path}`}
+            title={movie.title}
+            setVisible={setVisible}
+          />
+
+        }
       </div>
     </div>
   );
