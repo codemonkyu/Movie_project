@@ -1,3 +1,4 @@
+from audioop import reverse
 from unicodedata import name
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, serializers, status, generics
@@ -80,7 +81,7 @@ def take_movie_search(request, keyword):
 
     if genres.exists():
         for genre in genres:
-            genre_movies=Movie.objects.filter(genres_id__contains=genre.pk)
+            genre_movies=Movie.objects.filter(genres__id__contains=genre.pk)
             movie_list.extend(genre_movies)
     list=set(movie_list)
     serializer1 = MovieSerializer(list, many=True)
@@ -175,5 +176,84 @@ def genre_list(request, genre_name):
 
 
 
-##내가 좋아요한 영화와 장르가 비슷한 영화
+## 좋아요 리뷰 기반 추천 영화
+@api_view(['GET'])
+def recommend(request):
 
+    # 7점 이상 리뷰 영화들
+    movies_reviews = Review.objects.filter(Q(user_id=request.user.pk)|Q(rank__gte=7.0))
+
+    # 좋아요 영화들
+    user=request.user
+    movies_likes = user.like_movies.all()
+
+    dict = {
+        '12' : 0,
+        '14' : 0,
+        '16' : 0,
+        '18' : 0,
+        '27' : 0,
+        '28' : 0,
+        '35' : 0,
+        '36' : 0,
+        '37' : 0,
+        '53' : 0,
+        '80' : 0,
+        '99' : 0,
+        '878' : 0,
+        '9648' : 0,
+        '10402' : 0,
+        '10749' : 0,
+        '10751' : 0,
+        '10752' : 0,
+        '10770' : 0,
+    }
+
+    list1=[]
+    list2=[]
+    for review in movies_reviews:
+        movie1 = get_object_or_404(Movie, pk=review.movie_id)
+        list1 = movie1.genres.all()
+        
+
+    for like in movies_likes:
+        movie2 = get_object_or_404(Movie, pk=like.id)
+        list2 = movie2.genres.all()
+
+    movies_list = []
+    movies_list.extend(list1)
+    movies_list.extend(list2)
+
+    movies_list = set(movies_list)
+
+    for li in movies_list:
+        dict[str(li.id)]+=1
+
+    sorted_dict = sorted(dict.items(), key = lambda item: item[1], reverse=True)
+    high_socre = sorted_dict[0][1]   
+    count = 0
+
+    for dd in sorted_dict:
+        if dd[1]== high_socre:
+            count+=1
+
+    num = 30/count
+    result=[]
+    for i in range(count):
+        movies = Movie.objects.filter(Q(genres__id__contains=sorted_dict[i][0])).order_by('-popularity')[:num]
+
+        for movie in movies:
+            if not movie in result:
+                result.append(movie)
+
+    if len(result)<30:
+        movies = Movie.objects.all().order_by('-vote_average')
+
+        for movie in movies:
+            if not movie in result:
+                result.append(movie)
+            if len(result)==30:
+                break
+
+    serializer = MovieSerializer(result, many=True)
+    return Response(serializer.data)

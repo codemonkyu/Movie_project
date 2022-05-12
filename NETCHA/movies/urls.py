@@ -36,6 +36,9 @@ urlpatterns = [
     
     # 8점이상 영화
     path('toprated/', views.movie_over8),
+
+    # 추천 리스트
+    path('recommend/', views.recommend),
 ]
 
 
