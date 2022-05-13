@@ -54,7 +54,7 @@ function Row({ title, fetchUrl }) {
         {isVisble && (
           <Modal
             key={movie.id}
-            coverImg={`${base_url}${movie.poster_path}`}
+            coverImg={`${base_url}${movie.backdrop_path}`}
             title={movie.title}
             setVisible={setVisible}
           />

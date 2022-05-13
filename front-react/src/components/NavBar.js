@@ -9,6 +9,7 @@ import {
   Button,
 } from "react-bootstrap";
 import "./NavBar.css";
+import "../pages/SearchPage/Search.css";
 
 function NavBar() {
   let [showState, setShowstate] = useState(false);
@@ -16,9 +17,10 @@ function NavBar() {
   const [dropdownClick, setDropdownClick] = useState(false);
   const outSection = useRef();
   const [isVisble, setVisible] = useState(false);
+  const [keyword, setkeyword] = useState("");
 
   const onSetIsVisible = (e) => {
-    console.log(e);
+    console.log(e.ta);
     setVisible(e);
   };
 
@@ -45,6 +47,10 @@ function NavBar() {
     }
     console.log(show);
     console.log(showState);
+  };
+
+  const handleKeyword = (e) => {
+    console.log(e);
   };
 
   const profile = <img className="user-logo" src="img/NavAvatar.png" alt="" />;
@@ -244,7 +250,12 @@ function NavBar() {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button className="me-3" variant="outline-success">
+                <Button
+                  onClick={handleKeyword}
+                  className="me-2"
+                  variant="outline-success"
+                  href="/search"
+                >
                   Search
                 </Button>
               </Form>

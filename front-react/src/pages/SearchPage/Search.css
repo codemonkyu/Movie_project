@@ -1,0 +1,24 @@
+.mainBg-start {
+  opacity: 0.9;
+}
+
+.mainBg-end {
+  opacity: 1;
+  transition: all 0.7s;
+}
+
+.main-body {
+  padding-top: 80px;
+  background-color: black;
+  background-size: cover;
+  color: white;
+}
+
+.search-container {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.search-h1 {
+  padding-bottom: 30px;
+}
