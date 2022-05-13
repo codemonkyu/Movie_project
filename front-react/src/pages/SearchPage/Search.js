@@ -2,27 +2,24 @@ import React from "react";
 import NavBar from "../../components/NavBar";
 import { useEffect, useState } from "react";
 import Movie from "../../components/Movie";
-import "./Genre.css";
+import "./Search.css";
 import { Container, Row } from "react-bootstrap";
+import { useLocation } from'react-router'
 
-
-function Genre(props) {
+function Search(props) {
+  const { state } = useLocation();
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   let [bgFade, setBgFade] = useState("");
 
   async function getMovies() {
-    const res = await fetch(
-      "http://127.0.0.1:8000/movies/genre/" + props.genre,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    );
+    const res = await fetch("http://127.0.0.1:8000/movies/search/" + state , {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
     const movies = await res.json();
-    setMovies(movies);
-    console.log(movies);
+    setMovies(movies[0]);
     setLoading(false);
   }
   useEffect(() => {
@@ -47,14 +44,15 @@ function Genre(props) {
         ) : (
           <Container fluid>
             <Row>
-              <h1 className="ganre-h1">{props.genre}</h1>
+              <h1 className="ganre-h1">{state}로 검색한 결과</h1>
               {movies.map((movie) => (
                 <Movie
                   id={movie.id}
                   title={movie.title}
                   coverImg={movie.poster_path}
                 />
-              ))}
+              ))
+              }
             </Row>
           </Container>
         )}
@@ -63,4 +61,4 @@ function Genre(props) {
   );
 }
 
-export default Genre;
+export default Search;

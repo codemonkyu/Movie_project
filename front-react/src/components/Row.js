@@ -54,7 +54,11 @@ function Row({ title, fetchUrl }) {
         {isVisble && <BodyBlackoutStyle onSetIsVisible={onSetIsVisible} />}
         {isVisble && (
           <Modal
+<<<<<<< HEAD
             id={movie.id}
+=======
+            key={movie.id}
+>>>>>>> 15179e28e25c44007613cb52b2119bf702ba31aa
             coverImg={`${base_url}${movie.backdrop_path}`}
             title={movie.title}
             overview={movie.overview}

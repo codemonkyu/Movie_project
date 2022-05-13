@@ -9,16 +9,19 @@ import {
   Button,
 } from "react-bootstrap";
 import "./NavBar.css";
+import "../pages/SearchPage/Search.css";
+import { useNavigate } from 'react-router';
+
 
 function NavBar() {
+  const navigate = useNavigate();
   let [showState, setShowstate] = useState(false);
   let [show, setShow] = useState("");
   const [dropdownClick, setDropdownClick] = useState(false);
-  const outSection = useRef();
   const [isVisble, setVisible] = useState(false);
+  const [keyword, setkeyword] = useState("");
 
   const onSetIsVisible = (e) => {
-    console.log(e);
     setVisible(e);
   };
 
@@ -46,6 +49,16 @@ function NavBar() {
     console.log(show);
     console.log(showState);
   };
+
+
+  const handleOnchange = (e) => {
+    setkeyword(e.target.value);
+  }
+
+  const handleKeyword = () => {
+    navigate('/search', {state: keyword} );
+  };
+
 
   const profile = <img className="user-logo" src="img/NavAvatar.png" alt="" />;
   return (
@@ -239,12 +252,17 @@ function NavBar() {
             <Nav>
               <Form style={styles.padding} className="d-flex">
                 <FormControl
-                  type="search"
+                  onChange={handleOnchange}
+                  type="text"
                   placeholder="영화 제목, 줄거리 등"
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button className="me-3" variant="outline-success">
+                <Button
+                  onClick={handleKeyword}
+                  className="me-2"
+                  variant="outline-success"
+                >
                   Search
                 </Button>
               </Form>

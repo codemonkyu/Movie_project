@@ -1,4 +1,5 @@
 .detail-movie-modal {
+<<<<<<< HEAD
     background-color: black;
     width: 90%;
     min-width: 500px;
@@ -65,4 +66,18 @@
     color: white;
     font-weight: bold;
     text-align: center;
+=======
+  background-color: white;
+  width: 40%;
+  min-width: 300px;
+  max-width: 600px;
+  height: 80%;
+  overflow-y: auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 5px;
+  transform: translate(-50%, -50%);
+  z-index: 1011;
+>>>>>>> 15179e28e25c44007613cb52b2119bf702ba31aa
 }
