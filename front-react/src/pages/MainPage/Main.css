@@ -5,3 +5,27 @@
 .main {
   background-color: black;
 }
+
+.mainBg-start {
+    opacity: 0.85;
+}
+
+.mainBg-end {
+    opacity: 1;
+    transition: all 0.7s;
+}
+
+.main-body {
+    background-color: black;
+    background-size: cover;
+    color: white;
+}
+
+#main-h1 {
+    padding-top: 150px;
+    text-align: center;
+    height: 100vh;
+    background-color: black;
+    background-size: cover;
+    color: white;
+}

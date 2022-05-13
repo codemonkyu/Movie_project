@@ -23,5 +23,7 @@
 }
 
 .row__poster:hover {
-  transform: scale(1.08);
+  transform: scale(1.20, 1.20);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
 }
