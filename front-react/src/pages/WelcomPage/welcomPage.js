@@ -7,6 +7,7 @@ import SignUp from "../SignUp/signUpPage";
 import Main from "../MainPage/Main";
 import Genre from "../MovieGenre/Genre";
 import Search from "../SearchPage/Search";
+import LikePage from "../LikePage/LikePage";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
@@ -88,6 +89,7 @@ const WelcomPage = () => {
         <Route path="/war/" element={<Genre genre={genre[17]} />} />
         <Route path="/tv/" element={<Genre genre={genre[18]} />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/likePage" element={<LikePage />} />
 
       </Routes>
     </div>
