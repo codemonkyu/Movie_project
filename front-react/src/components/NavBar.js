@@ -10,8 +10,7 @@ import {
 } from "react-bootstrap";
 import "./NavBar.css";
 import "../pages/SearchPage/Search.css";
-import { useNavigate } from 'react-router';
-
+import { useNavigate } from "react-router";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -50,15 +49,13 @@ function NavBar() {
     console.log(showState);
   };
 
-
   const handleOnchange = (e) => {
     setkeyword(e.target.value);
-  }
-
-  const handleKeyword = () => {
-    navigate('/search', {state: keyword} );
   };
 
+  const handleKeyword = () => {
+    navigate("/search", { state: keyword });
+  };
 
   const profile = <img className="user-logo" src="img/NavAvatar.png" alt="" />;
   return (
@@ -246,7 +243,7 @@ function NavBar() {
               )}
               {isVisble && <OutsideClick onSetIsVisible={onSetIsVisible} />}
             </div>
-            <Nav.Link href="#action4">보관함</Nav.Link>
+            <Nav.Link href="#action4">내가 찜한 영화</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
@@ -254,7 +251,7 @@ function NavBar() {
                 <FormControl
                   onChange={handleOnchange}
                   type="text"
-                  placeholder="영화 제목, 줄거리 등"
+                  placeholder="영화 제목, 장르 등"
                   className="me-2"
                   aria-label="Search"
                 />

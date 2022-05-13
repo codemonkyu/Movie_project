@@ -1,5 +1,6 @@
 .mainBg-start {
   opacity: 0.9;
+  background-color: black;
 }
 
 .mainBg-end {
@@ -11,7 +12,7 @@
   padding-top: 80px;
   background-color: black;
   background-size: cover;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .search-container {
@@ -21,4 +22,12 @@
 
 .search-h1 {
   padding-bottom: 30px;
+}
+
+.Rows {
+  background-color: black;
+}
+
+html {
+  background-color: black;
 }

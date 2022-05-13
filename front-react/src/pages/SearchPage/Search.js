@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Movie from "../../components/Movie";
 import "./Search.css";
 import { Container, Row } from "react-bootstrap";
-import { useLocation } from'react-router'
+import { useLocation } from "react-router";
 
 function Search(props) {
   const { state } = useLocation();
@@ -13,7 +13,7 @@ function Search(props) {
   let [bgFade, setBgFade] = useState("");
 
   async function getMovies() {
-    const res = await fetch("http://127.0.0.1:8000/movies/search/" + state , {
+    const res = await fetch("http://127.0.0.1:8000/movies/search/" + state, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -40,19 +40,18 @@ function Search(props) {
           <NavBar />
         </div>
         {loading ? (
-          <h1 id="main-h1"></h1>
+          <h1 id="main-h1">Loading...</h1>
         ) : (
           <Container fluid>
-            <Row>
-              <h1 className="ganre-h1">{state}로 검색한 결과</h1>
+            <Row className="Rows">
+              <h1 className="ganre-h1">"{state}"(으)로 검색한 결과</h1>
               {movies.map((movie) => (
                 <Movie
                   id={movie.id}
                   title={movie.title}
                   coverImg={movie.poster_path}
                 />
-              ))
-              }
+              ))}
             </Row>
           </Container>
         )}

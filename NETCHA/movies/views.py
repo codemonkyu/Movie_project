@@ -72,9 +72,9 @@ def take_movie_search(request, keyword):
     title_movies = Movie.objects.filter(Q(title__contains=keyword))
     movie_list.extend(title_movies)
 
-    #오버뷰 갖고오기
-    overview_movies = Movie.objects.filter(Q(overview__contains=keyword))
-    movie_list.extend(overview_movies)
+    #오버뷰 갖고오기 (중지 5/13)
+    # overview_movies = Movie.objects.filter(Q(overview__contains=keyword))
+    # movie_list.extend(overview_movies)
 
     #장르로 검색
     genres = Genre.objects.filter(Q(name=keyword))

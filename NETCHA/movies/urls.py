@@ -29,10 +29,10 @@ urlpatterns = [
     path('review_create/<int:movie_pk>/', views.review_create),
 
     # 리뷰 수정
-    path('review_edit/<int:review_pk>/', views.review_create),
+    path('review_edit/<int:review_pk>/', views.review_edit),
 
     # 리뷰 삭제
-    path('review_delete/<int:movie_pk>/', views.review_delete),
+    path('review_delete/<int:movie_pk>/<int:review_pk>/', views.review_delete),
     
     # 8점이상 영화
     path('toprated/', views.movie_over8),
