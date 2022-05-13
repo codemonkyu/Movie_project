@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import {
   Navbar,
   Container,
@@ -17,7 +17,7 @@ function NavBar() {
   const navigate = useNavigate();
   let [showState, setShowstate] = useState(false);
   let [show, setShow] = useState("");
-  const [dropdownClick, setDropdownClick] = useState(false);
+  // const [dropdownClick, setDropdownClick] = useState(false);
   const [isVisble, setVisible] = useState(false);
   const [keyword, setkeyword] = useState("");
 
@@ -246,7 +246,7 @@ function NavBar() {
               )}
               {isVisble && <OutsideClick onSetIsVisible={onSetIsVisible} />}
             </div>
-            <Nav.Link href="#action4">보관함</Nav.Link>
+            <Nav.Link href="/likePage">내가 찜한 영화</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
