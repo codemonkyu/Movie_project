@@ -14,6 +14,7 @@ function Row({ title, fetchUrl }) {
   const [isVisble, setVisible] = useState(false);
   const onSetIsVisible = (active) => {
     setVisible(active);
+    console.log(movie.id);
   };
 
   // axios 서버에 데이터 요청
@@ -53,9 +54,13 @@ function Row({ title, fetchUrl }) {
         {isVisble && <BodyBlackoutStyle onSetIsVisible={onSetIsVisible} />}
         {isVisble && (
           <Modal
-            key={movie.id}
-            coverImg={`${base_url}${movie.poster_path}`}
+            id={movie.id}
+            coverImg={`${base_url}${movie.backdrop_path}`}
             title={movie.title}
+            overview={movie.overview}
+            release_date = {movie.release_date}
+            runtime={movie.runtime}
+            genres = {movie.genres}
             setVisible={setVisible}
           />
         )}

@@ -1,9 +1,9 @@
 .detail-movie-modal {
-    background-color: white;
-    width: 40%;
-    min-width: 300px;
-    max-width: 600px;
-    height: 80%;
+    background-color: black;
+    width: 90%;
+    min-width: 500px;
+    max-width: 700px;
+    height: 90%;
     overflow-y: auto;
     position: fixed;
     left: 50%;
@@ -11,4 +11,58 @@
     padding: 5px;
     transform: translate(-50%, -50%);
     z-index: 1011;
+}
+
+.detail-movie-modal::-webkit-scrollbar{
+    width: 10px;
+}
+
+.detail-movie-modal::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    height: 30%;
+  }
+  .detail-movie-modal::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+
+.poster{
+    width: 100%;
+    height: 100%;   
+}
+
+.left{
+    width: 70%;
+    float: left;
+}
+.right{
+    width: 30%;
+    float: right;
+}
+
+.detail-movie-btn{
+    background-color: red;
+    width: 60px;
+    height: 30px;
+
+}
+
+.detail-movie-btn:hover{
+    margin-top: -2px;
+    margin-left: 0px;
+    transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+
+}
+
+.detail-movie-btn > p{
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
