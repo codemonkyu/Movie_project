@@ -1,20 +1,21 @@
 .banner {
   color: white;
-  object-fit: scale-down;
-  height: 650px;
+  object-fit: contain;
+  height: 600px;
   width: 100%;
+  margin-top: 2%;
 }
 
 .banner__contents {
   margin-left: 30px;
-  padding-top: 400px;
+  padding-top: 300px;
   height: 190px;
 }
 
 .banner__title {
-  font-size: 8rem;
+  font-size: 1.9rem;
   font-weight: 800;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.5rem;
 }
 
 .banner__description {
@@ -50,11 +51,11 @@
 
 /*아래쪽 살짝 fade 주는 기능 */
 .banner__fadeBottom {
-  height: 16rem;
+  height: 18.8rem;
   background-image: linear-gradient(
     180deg,
     transparent,
-    rgba(37, 37, 37, 0.61),
+    rgba(31, 29, 29, 0.61),
     #111
   );
 }

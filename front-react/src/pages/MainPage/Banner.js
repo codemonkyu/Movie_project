@@ -36,8 +36,11 @@ function Banner() {
         backgroundPosition: "center center",
       }}
     >
+      <div className="banner__fadeTop" />
       <div className="banner__contents">
-        <h1>{movie?.title || movie?.overview || movie?.original_title}</h1>
+        <h1 className="banner__title">
+          {movie?.title || movie?.overview || movie?.original_title}
+        </h1>
         <div className="banner__buttons">
           <button className="banner__button">play</button>
           <button className="banner__button">My List</button>
