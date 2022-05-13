@@ -5,6 +5,7 @@ import Movie from "../../components/Movie";
 import "./Genre.css";
 import { Container, Row } from "react-bootstrap";
 
+
 function Genre(props) {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -19,7 +20,6 @@ function Genre(props) {
         },
       }
     );
-    console.log(res);
     const movies = await res.json();
     setMovies(movies);
     console.log(movies);

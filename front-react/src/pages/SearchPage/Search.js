@@ -4,28 +4,22 @@ import { useEffect, useState } from "react";
 import Movie from "../../components/Movie";
 import "./Search.css";
 import { Container, Row } from "react-bootstrap";
+import { useLocation } from'react-router'
 
-
-function Search(keyword) {
+function Search(props) {
+  const { state } = useLocation();
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   let [bgFade, setBgFade] = useState("");
 
-
-
   async function getMovies() {
-    const res = await fetch(
-      "http://127.0.0.1:8000/movies/serach/" + {keyword},
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    );
-    console.log(res);
+    const res = await fetch("http://127.0.0.1:8000/movies/search/" + state , {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
     const movies = await res.json();
-    setMovies(movies);
-    console.log(movies);
+    setMovies(movies[0]);
     setLoading(false);
   }
   useEffect(() => {
@@ -50,23 +44,21 @@ function Search(keyword) {
         ) : (
           <Container fluid>
             <Row>
-              <h1 className="search-h1">{keyword}로 검색하신 결과</h1>
+              <h1 className="ganre-h1">{state}로 검색한 결과</h1>
               {movies.map((movie) => (
                 <Movie
                   id={movie.id}
                   title={movie.title}
                   coverImg={movie.poster_path}
                 />
-              ))}
+              ))
+              }
             </Row>
           </Container>
         )}
       </div>
     </div>
   );
-}
-
-  
 }
 
 export default Search;
