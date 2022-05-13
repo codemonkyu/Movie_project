@@ -22,6 +22,7 @@
 }
 
 .row__poster:hover {
+<<<<<<< HEAD
   transform: scale(1.15, 1.15);
   z-index: 1010;
   transition: all 0.2s ease-in;
@@ -32,4 +33,9 @@ h2 {
   height: 50px;
   width: 100%;
   padding-top: 20px;
+=======
+  transform: scale(1.20, 1.20);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+>>>>>>> 35a2b6fe131d0da4655c9432e46b22b4c722bad4
 }
