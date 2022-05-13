@@ -1,0 +1,75 @@
+.header-body {
+  width: 100vh;
+}
+
+.user-logo {
+  width: 35px;
+  height: auto;
+  padding-bottom: 0px;
+}
+
+.brand-logo {
+  width: 100px;
+  height: auto;
+  padding-top: 5px;
+  padding-bottom: 0px;
+}
+
+.fade-start {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.fade-end {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 1s;
+}
+
+.dropdown {
+  color: red;
+}
+
+.drop-menu.show {
+  visibility: visible;
+  display: block;
+  opacity: 1;
+  transform: translateY(10px);
+  transition: all 0.5s;
+}
+
+.drop-menu {
+  transform: translateY(-5px);
+  position: absolute;
+  visibility: hidden;
+  z-index: 1000;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0;
+  font-size: 1rem;
+  text-align: left;
+  list-style: none;
+  background-color: #111;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  opacity: 0;
+}
+
+.outsection {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Navbar {
+  position: fixed;
+  top: 0;
+}
+
+.dropdown-item {
+  color: white;
+}

@@ -3,12 +3,12 @@ import Row from "../../components/Row";
 import requests from "../../components/requests";
 import Banner from "./Banner";
 import "./Main.css";
-import Nav from "./Nav";
+import NavBar from "../../components/NavBar.js";
 
 function Main() {
   return (
     <div className="main">
-      <Nav />
+      <NavBar />
       <Banner />
       <Row title="TopRated" fetchUrl={requests.fetchTopRated} />
       <Row title="Actions" fetchUrl={requests.fetchActions} />

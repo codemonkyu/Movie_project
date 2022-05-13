@@ -5,9 +5,31 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import LoginPage from "../Login/loginPage";
 import SignUp from "../SignUp/signUpPage";
 import Main from "../MainPage/Main";
+import Genre from "../MovieGenre/Genre";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
+  const genre = [
+    "액션",
+    "판타지",
+    "애니메이션",
+    "드라마",
+    "공포",
+    "모험",
+    "코미디",
+    "역사",
+    "서부",
+    "스릴러",
+    "범죄",
+    "다큐멘터리",
+    "SF",
+    "미스터리",
+    "음악",
+    "로맨스",
+    "가족",
+    "전쟁",
+    "TV 영화",
+  ];
   return (
     <div>
       <Routes>
@@ -16,7 +38,7 @@ const WelcomPage = () => {
           element={
             <div className="main-bg">
               <div className="logo-box">
-                <img className="logo" src="img/Navlogo.png" />
+                <img className="logo" src="img/Navlogo.png" alt="" />
               </div>
               <div className="box">
                 <div className="box-margin">
@@ -42,8 +64,28 @@ const WelcomPage = () => {
         />
         <Route path="/loginpage/*" element={<LoginPage />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup/*" element={<SignUp />} />
+        <Route path="/MainPage/*" element={<Main />} />
         <Route path="*" element={<div> 없는 페이지 </div>} />
-        <Route path="/MainPage" element={<Main />} />
+        <Route path="/action/" element={<Genre genre={genre[0]} />} />
+        <Route path="/fantasy/" element={<Genre genre={genre[1]} />} />
+        <Route path="/animation/" element={<Genre genre={genre[2]} />} />
+        <Route path="/drama/" element={<Genre genre={genre[3]} />} />
+        <Route path="/horror/" element={<Genre genre={genre[4]} />} />
+        <Route path="/adventure/" element={<Genre genre={genre[5]} />} />
+        <Route path="/comedy/" eelement={<Genre genre={genre[6]} />} />
+        <Route path="/history/" element={<Genre genre={genre[7]} />} />
+        <Route path="/western/" element={<Genre genre={genre[8]} />} />
+        <Route path="/thriller/" element={<Genre genre={genre[9]} />} />
+        <Route path="/crime/" element={<Genre genre={genre[10]} />} />
+        <Route path="/documentary/" element={<Genre genre={genre[11]} />} />
+        <Route path="/sf/" element={<Genre genre={genre[12]} />} />
+        <Route path="/mystery/" element={<Genre genre={genre[13]} />} />
+        <Route path="/music/" element={<Genre genre={genre[14]} />} />
+        <Route path="/romance/" element={<Genre genre={genre[15]} />} />
+        <Route path="/family/" element={<Genre genre={genre[16]} />} />
+        <Route path="/war/" element={<Genre genre={genre[17]} />} />
+        <Route path="/tv/" element={<Genre genre={genre[18]} />} />
       </Routes>
     </div>
   );
