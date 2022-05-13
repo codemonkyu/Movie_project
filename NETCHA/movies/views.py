@@ -110,7 +110,7 @@ def movie_like(request, movie_pk):
 def movie_like_list(request):
     user=request.user
     movies = user.like_movies.all()
-    serializer = MovieTitleSerializer(movies, many=True)
+    serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 

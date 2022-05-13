@@ -12,7 +12,7 @@ function Movie({ id, title, coverImg }) {
   return (
     <Col style={styles.col}>
       <div id={id}>
-        <img
+        <img className="movieImg"
           src={"http://image.tmdb.org/t/p/original" + coverImg}
           alt={title}
         />

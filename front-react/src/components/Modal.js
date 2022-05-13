@@ -9,6 +9,9 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
     setVisible(false);
   };
   const base_url_like = "http://127.0.0.1:8000/movies/like/";
+  const [like,setLike] = useState()
+  const HeartImg = "img/Heart.png"
+  const EmptyHeartImg = "img/EmptyHeart.png"
 
   const setLikes = (id) => {
     console.log({id}.id.id)
@@ -22,18 +25,13 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
-    
+    }).then((res) =>{
+      console.log(res.data[0]);
+      setLike(res.data[0]);
     })
-
-
-    // axios.post(base_url_like+{id}.id.id,{
-    //   // headers: {
-    //   //   Authorization: "Bearer " + localStorage.getItem("token"),
-    //   // },
-    //   liking:true,
-    //   count:1
-    // })
+    // setLike(!like) //해당영화의 liking 값  
   };
+
 
   const genre = {
     '12': "모험",
@@ -67,18 +65,19 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
           <div className="left"><p>상영시간 : {runtime}분</p></div> 
           <div className="right"><p>개봉일자 : {release_date}</p></div>
         </div>
+        <div>
+          <button className="heart-btn" onClick={() => setLikes({id})}><img className="heart" src={like?HeartImg:EmptyHeartImg }
+          alt="heart-btn" />{like}</button>
+        </div>
         <ul>
           {genres.map((g) => (
             <li key={g}>{genre[g]}</li>
           ))}
         </ul>
-
         <p>{overview}</p>
-        
       </div>
       <div >
         <button className="detail-movie-btn" onClick={() => Btn()}><p>close</p></button>
-        <button onClick={() => setLikes({id})}>좋아요</button>
       </div>
     </div>
   );
