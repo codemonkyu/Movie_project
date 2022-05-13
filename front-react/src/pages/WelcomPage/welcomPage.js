@@ -6,6 +6,7 @@ import LoginPage from "../Login/loginPage";
 import SignUp from "../SignUp/signUpPage";
 import Main from "../MainPage/Main";
 import Genre from "../MovieGenre/Genre";
+import Search from "../SearchPage/Search";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
@@ -86,6 +87,8 @@ const WelcomPage = () => {
         <Route path="/family/" element={<Genre genre={genre[16]} />} />
         <Route path="/war/" element={<Genre genre={genre[17]} />} />
         <Route path="/tv/" element={<Genre genre={genre[18]} />} />
+        <Route path="/search" element={<Search />} />
+
       </Routes>
     </div>
   );
