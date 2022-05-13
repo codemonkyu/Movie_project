@@ -47,7 +47,7 @@ function Genre(props) {
         ) : (
           <Container fluid>
             <Row>
-              <h1 className="ganre-h1">{props.ganre}</h1>
+              <h1 className="ganre-h1">{props.genre}</h1>
               {movies.map((movie) => (
                 <Movie
                   id={movie.id}
