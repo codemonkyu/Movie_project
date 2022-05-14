@@ -7,25 +7,32 @@
 }
 
 .mainBg-start {
-    opacity: 0.85;
+  opacity: 0.85;
 }
 
 .mainBg-end {
-    opacity: 1;
-    transition: all 0.7s;
+  opacity: 1;
+  transition: all 0.7s;
 }
 
 .main-body {
-    background-color: black;
-    background-size: cover;
-    color: white;
+  background-color: black;
+  background-size: cover;
+  color: white;
 }
 
 #main-h1 {
-    padding-top: 150px;
-    text-align: center;
-    height: 100vh;
-    background-color: black;
-    background-size: cover;
-    color: white;
+  padding-top: 150px;
+  text-align: center;
+  height: 100vh;
+  background-color: black;
+  background-size: cover;
+  color: white;
+}
+
+.footer {
+  background-color: black;
+  color: rgb(173, 171, 171);
+  padding-left: 30px;
+  padding-top: 50px;
 }

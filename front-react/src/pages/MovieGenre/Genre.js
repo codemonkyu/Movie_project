@@ -5,7 +5,6 @@ import Movie from "../../components/Movie";
 import "./Genre.css";
 import { Container, Row } from "react-bootstrap";
 
-
 function Genre(props) {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -43,7 +42,7 @@ function Genre(props) {
           <NavBar />
         </div>
         {loading ? (
-          <h1 id="main-h1"></h1>
+          <h1 id="main-h1">Loading...</h1>
         ) : (
           <Container fluid>
             <Row>

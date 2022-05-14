@@ -75,7 +75,7 @@ const WelcomPage = () => {
         <Route path="/drama/" element={<Genre genre={genre[3]} />} />
         <Route path="/horror/" element={<Genre genre={genre[4]} />} />
         <Route path="/adventure/" element={<Genre genre={genre[5]} />} />
-        <Route path="/comedy/" eelement={<Genre genre={genre[6]} />} />
+        <Route path="/comedy/" element={<Genre genre={genre[6]} />} />
         <Route path="/history/" element={<Genre genre={genre[7]} />} />
         <Route path="/western/" element={<Genre genre={genre[8]} />} />
         <Route path="/thriller/" element={<Genre genre={genre[9]} />} />
@@ -90,7 +90,6 @@ const WelcomPage = () => {
         <Route path="/tv/" element={<Genre genre={genre[18]} />} />
         <Route path="/search" element={<Search />} />
         <Route path="/likePage" element={<LikePage />} />
-
       </Routes>
     </div>
   );
