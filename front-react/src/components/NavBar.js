@@ -46,8 +46,6 @@ function NavBar() {
       setShow("");
       setShowstate(false);
     }
-    console.log(show);
-    console.log(showState);
   };
 
   const handleOnchange = (e) => {
@@ -57,12 +55,15 @@ function NavBar() {
   // handelonchange 엔터로 받기
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleKeyword();
+      e.preventDefault();
+      navigate("/search", { state: keyword });
+      window.location.reload(true);
     }
   };
 
   const handleKeyword = () => {
     navigate("/search", { state: keyword });
+    window.location.reload(true);
   };
 
   const profile = <img className="user-logo" src="img/NavAvatar.png" alt="" />;
