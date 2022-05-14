@@ -73,3 +73,16 @@
 .dropdown-item {
   color: white;
 }
+
+.FormControl {
+  background-color: rgb(225, 204, 182);
+}
+
+.profile_nav {
+  margin-right: 10px;
+}
+
+.profile_nav_child {
+  margin-right: 300px;
+  color: black;
+}

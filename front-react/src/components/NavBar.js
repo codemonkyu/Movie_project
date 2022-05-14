@@ -11,6 +11,7 @@ import {
 import "./NavBar.css";
 import "../pages/SearchPage/Search.css";
 import { useNavigate } from "react-router";
+// import search from "../../public/img/search.png";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -53,6 +54,13 @@ function NavBar() {
     setkeyword(e.target.value);
   };
 
+  // handelonchange 엔터로 받기
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleKeyword();
+    }
+  };
+
   const handleKeyword = () => {
     navigate("/search", { state: keyword });
   };
@@ -67,12 +75,11 @@ function NavBar() {
       variant="dark"
     >
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="/mainpage">
           <img
             className="brand-logo"
             src="img/Navlogo.png"
-            href="/mainpage"
-            alt=""
+            alt="logomainpage"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -94,7 +101,8 @@ function NavBar() {
                 role="button"
                 className="dropdown-toggle nav-link"
                 tabIndex="0"
-                href="#"
+                href="#!"
+                // #!로 waring 삭제
               >
                 장르
               </a>
@@ -250,6 +258,7 @@ function NavBar() {
               <Form style={styles.padding} className="d-flex">
                 <FormControl
                   onChange={handleOnchange}
+                  onKeyPress={onKeyPress}
                   type="text"
                   placeholder="영화 제목, 장르 등"
                   className="me-2"
@@ -258,14 +267,23 @@ function NavBar() {
                 <Button
                   onClick={handleKeyword}
                   className="me-2"
-                  variant="outline-success"
+                  variant="outline-danger"
                 >
-                  Search
+                  {/* <img
+                    className="search_button"
+                    src="img/Search2.png"
+                    alt="searchbutton"
+                  /> */}
+                  search
                 </Button>
               </Form>
-              <NavDropdown title={profile} id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action2">
-                  👤 마이페이지
+              <NavDropdown
+                className="profile_nav"
+                title={profile}
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item className="profile_nav_child" href="#action2">
+                  로그아웃
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
