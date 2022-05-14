@@ -1,6 +1,7 @@
 import "./Modal.css";
-import React, {useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
+import Review from "./Review";
 
 const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, setVisible }) => {
   // console.log(title)
@@ -12,9 +13,11 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
   const [like,setLike] = useState()
   const HeartImg = "img/Heart.png"
   const EmptyHeartImg = "img/EmptyHeart.png"
+  //현재 상태
+  const [liking,setLiking] =useState(like)
+  
 
   const setLikes = (id) => {
-    console.log({id}.id.id)
     axios({
       url: base_url_like+{id}.id.id+"/",
       method: 'post',
@@ -28,9 +31,14 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
     }).then((res) =>{
       console.log(res.data[0]);
       setLike(res.data[0]);
+      
     })
-    // setLike(!like) //해당영화의 liking 값  
+    // 현재 상태 저장해주기 
   };
+
+  useEffect(() => {
+    setLiking(like)
+  },[like]);
 
 
   const genre = {
@@ -54,6 +62,7 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
     '10752': "전쟁",
     '10770': "TV 영화"
   }
+
   return (
     <div className="detail-movie-modal">
       <div>
@@ -66,8 +75,8 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
           <div className="right"><p>개봉일자 : {release_date}</p></div>
         </div>
         <div>
-          <button className="heart-btn" onClick={() => setLikes({id})}><img className="heart" src={like?HeartImg:EmptyHeartImg }
-          alt="heart-btn" />{like}</button>
+          <button className="heart-btn" onClick={() => setLikes({id})}><img className="heart" src={liking?HeartImg:EmptyHeartImg }
+          alt="heartImg"/>{like}</button>
         </div>
         <ul>
           {genres.map((g) => (
@@ -75,6 +84,7 @@ const Modal = ({ id, coverImg, title, overview, release_date, runtime, genres, s
           ))}
         </ul>
         <p>{overview}</p>
+        <Review id={id} />
       </div>
       <div >
         <button className="detail-movie-btn" onClick={() => Btn()}><p>close</p></button>
