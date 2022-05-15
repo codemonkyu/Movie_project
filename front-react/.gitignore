@@ -22,8 +22,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# 장고db & __pycache__ & *.pyc
+# django ignore basic settings
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
 db.sqlite3
-__pycache__
-*.pyc 
-secrets.json
+db.sqlite3-journal
+media
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
