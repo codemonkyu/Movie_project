@@ -4,31 +4,32 @@ import "./Row.css";
 import Modal from "./Modal";
 import BodyBlackoutStyle from "./BodyBlackoutStyle";
 
-const base_url = "http://image.tmdb.org/t/p/original/";
+const base_url = "http://image.tmdb.org/t/p/";
 
 function Row({ title, fetchUrl }) {
   const [movies, setMoives] = useState([]);
   const [movie, setMovie] = useState({});
+  const original = ("original");
 
   // Modal창을 보여줄지 말지
   const [isVisble, setVisible] = useState(false);
   const onSetIsVisible = (active) => {
     setVisible(active);
-    console.log(movie.id);
   };
 
   // axios 서버에 데이터 요청
+
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(fetchUrl, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
-      setMoives(request.data);
-    }
-    fetchData();
-  }, [fetchUrl]);
+    axios.get(fetchUrl, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((res)=>{
+      let result = res.data.slice(0, 20);
+      setMoives(result);
+    })
+  }, []);
 
   return (
     /*컨테이너*/
@@ -44,7 +45,7 @@ function Row({ title, fetchUrl }) {
             }}
             key={movie.id}
             className="row__poster"
-            src={`${base_url}${movie.poster_path}`}
+            src={`${base_url}${original}${movie.poster_path}`}
             alt={movie.name}
           />
         ))}
@@ -55,7 +56,7 @@ function Row({ title, fetchUrl }) {
         {isVisble && (
           <Modal
             id={movie.id}
-            coverImg={`${base_url}${movie.backdrop_path}`}
+            coverImg={`${base_url}${original}${movie.backdrop_path}`}
             title={movie.title}
             overview={movie.overview}
             release_date={movie.release_date}

@@ -3,12 +3,11 @@
   width: 90%;
   min-width: 500px;
   max-width: 800px;
-  height: 90%;
+  height: 85%;
   overflow-y: auto;
   position: fixed;
   left: 50%;
   top: 50%;
-  padding: 5px;
   transform: translate(-50%, -50%);
   z-index: 1011;
 }
@@ -24,6 +23,7 @@
   border: 2px solid transparent;
   height: 30%;
 }
+
 .detail-movie-modal::-webkit-scrollbar-track {
   background-color: grey;
   border-radius: 10px;
@@ -31,6 +31,7 @@
 }
 
 .poster {
+  padding-top: 10px;
   width: 100%;
   height: 100%;
 }
@@ -39,33 +40,80 @@
   width: 70%;
   float: left;
 }
+
+.button-right {
+  float: right;
+  margin-right: 10px;
+}
+
 .right {
+  text-align: right;
   width: 30%;
   float: right;
 }
 
 .detail-movie-btn {
-  background-color: red;
-  width: 60px;
-  height: 30px;
-}
 
-.detail-movie-btn:hover {
-  margin-top: -2px;
-  margin-left: 0px;
-  transform: scale(1.1, 1.1);
-  -ms-transform: scale(1.1, 1.1);
-  -webkit-transform: scale(1.1, 1.1);
-  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
-}
+  margin-top: 10px;
+  margin-left: 300px;
+  margin-bottom: 10px;
 
-.detail-movie-btn > p {
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Nanum Gothic';
   color: white;
-  font-weight: bold;
   text-align: center;
+  font-weight: bold;
+  background: red;
+  border: solid 2px grey;
+  border-radius: 12px;
+
 }
 
 .heart {
-  width: 60px;
+  width: 30px;
+  height: 32px;
+
+}
+
+h2 {
+  padding-left: 10px;
+  padding-top: 5px;
   height: 30px;
+
+}
+
+p {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+
+}
+
+.modal-start {
+  opacity: 0;
+}
+
+.modal-end {
+  opacity: 1;
+  transition: all 0.7s;
+}
+
+.poster-start {
+  opacity: 0;
+}
+
+.poster-end {
+  opacity: 1;
+  transition: all 1.2s;
+}
+
+button {
+  margin-left: 10px;
+}
+
+input {
+  margin-left: 10px;
 }
