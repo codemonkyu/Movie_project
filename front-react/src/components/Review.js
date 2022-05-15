@@ -117,6 +117,22 @@ function Review(id) {
   return (
     <div className="review-list">
       <hr />
+      <input
+        type="text"
+        placeholder="댓글 내용"
+        onChange={(event) => setComment(event.target.value)}
+        value={comment}
+      />
+      <input
+        type="number"
+        placeholder="평점 (1~10점)"
+        onChange={(event) => setRank(event.target.value)}
+        value={rank}
+      />
+      <button className="commentBtn" onClick={() => createReview()}>
+        댓글달기
+      </button>
+      <hr/>
       {reviews.map((review) => {
         dupCheck.push(review.user);
 
@@ -126,39 +142,29 @@ function Review(id) {
             <p>작성자: {review.user}</p>
             <p>내용: {review.content}</p>
             <p>평점: {review.rank}</p>
-            <button
-              className="editBtn"
-              onClick={() => editReview(review.user, review.id)}
-            >
-              수정하기
-            </button>
-            <button
-              className="deleteBtn"
-              onClick={() => {
-                deleteReview(review.user, review.id);
-              }}
-            >
-              삭제하기
-            </button>
+            {localStorage.getItem("pk") == review.user ? (
+              <div>
+                <button
+                  className="editBtn"
+                  onClick={() => editReview(review.user, review.id)}
+                >
+                  수정하기
+                </button>
+                <button
+                  className="deleteBtn"
+                  onClick={() => {
+                    deleteReview(review.user, review.id);
+                  }}
+                >
+                  삭제하기
+                </button>
+              </div>
+            ) : null}
             <hr />
           </div>
         );
       })}
-      <input
-        type="text"
-        placeholder="content"
-        onChange={(event) => setComment(event.target.value)}
-        value={comment}
-      />
-      <input
-        type="number"
-        placeholder="rank"
-        onChange={(event) => setRank(event.target.value)}
-        value={rank}
-      />
-      <button className="commentBtn" onClick={() => createReview()}>
-        댓글달기
-      </button>
+
     </div>
   );
 }
