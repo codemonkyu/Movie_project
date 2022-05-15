@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+
 from datetime import timedelta
 from pathlib import Path
 import os
@@ -112,16 +113,9 @@ ACCOUNT_EMAIL_REQUIRED = True            # email 필드 사용 o
 ACCOUNT_USERNAME_REQUIRED = False        # username 필드 사용 x
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
-#JWT환경설정 
+#JWT환경설정
 REST_USE_JWT = True
 
-
-#refresh token 유효기간 설정
-##access token 유효기간 설정 
-### 설정이유 -> refresh token 유효기간 내에서 accesstoken의 재발급은 제한이 없다. 때문에 refreshtoken이 보안이슈에 핵심요소 
-### refreshtoken만 갖고있으면 token을 무한정으로 재발급받을수있다.
-### Rotae_refresh_tokens -> ture설정시 tokenrefresh를 했을때 새로운 refresh, accesstoken이 재발급되고 기존의 토근은 blacklist=true일시 blacklist에 담기게된다. 현재는 falso로 주어 accesstoken만 받도록한다.
-#### blacklist기법을 사용하여 로그아웃 또는 악의적으로 유출된 token을 서버에서 사용할수 없도록 설정해준다.
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=6),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
