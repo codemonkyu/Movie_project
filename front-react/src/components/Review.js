@@ -126,20 +126,24 @@ function Review(id) {
             <p>작성자: {review.user}</p>
             <p>내용: {review.content}</p>
             <p>평점: {review.rank}</p>
-            <button
-              className="editBtn"
-              onClick={() => editReview(review.user, review.id)}
-            >
-              수정하기
-            </button>
-            <button
-              className="deleteBtn"
-              onClick={() => {
-                deleteReview(review.user, review.id);
-              }}
-            >
-              삭제하기
-            </button>
+            {localStorage.getItem("pk") == review.user ? (
+              <div>
+                <button
+                  className="editBtn"
+                  onClick={() => editReview(review.user, review.id)}
+                >
+                  수정하기
+                </button>
+                <button
+                  className="deleteBtn"
+                  onClick={() => {
+                    deleteReview(review.user, review.id);
+                  }}
+                >
+                  삭제하기
+                </button>
+              </div>
+            ) : null}
             <hr />
           </div>
         );
