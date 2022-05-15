@@ -5,7 +5,6 @@ import Movie from "../../components/Movie";
 import "./LikePage.css";
 import { Container, Row } from "react-bootstrap";
 
-
 function LikePage(props) {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -43,15 +42,14 @@ function LikePage(props) {
         ) : (
           <Container fluid>
             <Row>
-              <h1 className="ganre-h1">내가 찜한 결과</h1>
+              <h1 className="ganre-h1">내가 찜한 영화들</h1>
               {movies.map((movie) => (
                 <Movie
                   id={movie.id}
                   title={movie.title}
                   coverImg={movie.poster_path}
                 />
-              ))
-              }
+              ))}
             </Row>
           </Container>
         )}

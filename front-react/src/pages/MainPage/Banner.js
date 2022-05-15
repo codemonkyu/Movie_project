@@ -13,6 +13,7 @@ function Banner() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      // toprated영화 중 랜덤으로 1개의 영화 갖고오기
       setMoive(request.data[Math.floor(Math.random() * request.data.length)]);
     }
     fetchData();
@@ -36,16 +37,16 @@ function Banner() {
         backgroundPosition: "center center",
       }}
     >
-      <div className="banner__fadeTop" />
       <div className="banner__contents">
         <h1 className="banner__title">
           {movie?.title || movie?.overview || movie?.original_title}
         </h1>
         <div className="banner__buttons">
-          <button className="banner__button">play</button>
+          <button className="banner__button">View</button>
           <button className="banner__button">My List</button>
         </div>
 
+        {/* overview길이 */}
         <h1 className="banner__description">
           {truncate(movie?.overview, 150)}
         </h1>

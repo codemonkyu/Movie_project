@@ -86,3 +86,8 @@
   margin-right: 300px;
   color: black;
 }
+
+.search_button {
+  width: 23px;
+  height: 23px;
+}

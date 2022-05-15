@@ -81,6 +81,7 @@ const Modal = ({
   return (
     <div className={"detail-movie-modal modal-start " + modalAnimation}>
       <div>
+        {/* 영화타이틀 & 좋아요기능 */}
         <h2 className="h2-padding">
           {title}{" "}
           <button className="button-right" onClick={() => setLikes({ id })}>
@@ -92,13 +93,18 @@ const Modal = ({
             {like}
           </button>
         </h2>
-        <div>
+        {/* 영화 포스터 backdrop */}
+        <div className="poster_contain">
           <img
             className={"poster poster-start " + posterFade}
             src={coverImg}
             alt={title}
           />
+
+          <div className="poster_gradient" />
         </div>
+
+        {/* 영화 정보 칸 */}
         <div>
           <div className="left">
             <p>상영시간 : {runtime}분</p>
@@ -113,9 +119,12 @@ const Modal = ({
             <li key={g}>{genre[g]}</li>
           ))}
         </ul>
-        <p>{overview}</p>
+
+        <p className="overview_indent">{overview}</p>
         <Review id={id} />
       </div>
+
+      {/* close버튼 */}
       <div>
         <button className="detail-movie-btn" onClick={() => Btn()}>
           close

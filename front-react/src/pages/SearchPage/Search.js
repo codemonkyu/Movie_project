@@ -12,6 +12,7 @@ function Search(props) {
   const [movies, setMovies] = useState([]);
   let [bgFade, setBgFade] = useState("");
 
+  //serch API 호출
   async function getMovies() {
     const res = await fetch("http://127.0.0.1:8000/movies/search/" + state, {
       headers: {
@@ -33,6 +34,7 @@ function Search(props) {
     };
   }, []);
 
+  // Search 함수로 뿌려지는 화면
   return (
     <div className={"mainBg-start " + bgFade}>
       <div className="main-body">

@@ -11,6 +11,8 @@ import LikePage from "../LikePage/LikePage";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
+
+  //장르 페이지 연결할 변수
   const genre = [
     "액션",
     "판타지",
@@ -32,7 +34,9 @@ const WelcomPage = () => {
     "전쟁",
     "TV 영화",
   ];
+
   return (
+    //welcomepage 화면
     <div>
       <Routes>
         <Route
@@ -64,8 +68,8 @@ const WelcomPage = () => {
             </div>
           }
         />
+        {/* welcome page에서 연결되는 페이지 */}
         <Route path="/loginpage/*" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="/signup/*" element={<SignUp />} />
         <Route path="/MainPage/*" element={<Main />} />
         <Route path="*" element={<div> 없는 페이지 </div>} />

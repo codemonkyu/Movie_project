@@ -53,6 +53,7 @@ const LoginPage = () => {
     setInputPw(e.target.value);
   };
 
+  //입력 초기화
   useEffect(() => {
     setFade("end");
     setBgFade("bg-end");
@@ -62,6 +63,7 @@ const LoginPage = () => {
     };
   }, []);
 
+  //login_button
   useEffect(() => {
     if (check) {
       setButtonState("able-button");

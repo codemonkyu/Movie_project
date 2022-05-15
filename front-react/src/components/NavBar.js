@@ -12,6 +12,7 @@ import "./NavBar.css";
 import "../pages/SearchPage/Search.css";
 import { useNavigate } from "react-router";
 import "../pages/Login/loginPage.css";
+import axios from "axios";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -64,6 +65,20 @@ function NavBar() {
   const handleKeyword = () => {
     navigate("/search", { state: keyword });
     window.location.reload(true);
+  };
+
+  //로그아웃
+  const onLogout = () => {
+    axios
+      .post("http://127.0.0.1:8000/accounts/logout/", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        localStorage.clear();
+        navigate("/loginpage");
+      });
   };
 
   const profile = <img className="user-logo" src="img/NavAvatar.png" alt="" />;
@@ -270,12 +285,11 @@ function NavBar() {
                   className="me-2"
                   variant="outline-danger"
                 >
-                  {/* <img
+                  <img
                     className="search_button"
-                    src="img/Search2.png"
+                    src="img/Search.png"
                     alt="searchbutton"
-                  /> */}
-                  search
+                  />
                 </Button>
               </Form>
               <NavDropdown
@@ -285,6 +299,7 @@ function NavBar() {
               >
                 <NavDropdown.Item
                   className="profile_nav_child"
+                  onClick={onLogout}
                   // href="/loginpage"
                 >
                   로그아웃

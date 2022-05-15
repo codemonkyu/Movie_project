@@ -14,14 +14,17 @@ const SignUp = () => {
     inputPw.length > 3 &&
     inputPwValidate.length > 3;
 
+  // email 입력값
   const handleInputEmail = (e) => {
     setInputEmail(e.target.value);
   };
 
+  // pw 입력값
   const handleInputPw = (e) => {
     setInputPw(e.target.value);
   };
 
+  // pw 입력값 (유효성검사용)
   const handleInputPwValidate = (e) => {
     setInputPwValidate(e.target.value);
   };
@@ -41,6 +44,7 @@ const SignUp = () => {
       return false;
     }
 
+    //register API 호출
     axios
       .post("http://127.0.0.1:8000/register/", user)
       .then((res) => {
@@ -48,7 +52,6 @@ const SignUp = () => {
           console.log(res.data.access_token);
           alert("가입을 축하드립니다!");
           window.location.replace("/loginpage");
-          // 사용하려면 App.js에서 /로 라우팅해야 한다
         } else {
           setInputEmail("");
           setInputPw("");
@@ -80,6 +83,7 @@ const SignUp = () => {
     };
   }, [check]);
 
+  // Signup 페이지
   return (
     <div className={"login-bg bg-start " + bgFade}>
       <div className="logo-box">

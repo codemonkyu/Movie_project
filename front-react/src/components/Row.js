@@ -6,10 +6,11 @@ import BodyBlackoutStyle from "./BodyBlackoutStyle";
 
 const base_url = "http://image.tmdb.org/t/p/";
 
+//캐러셀이라고 불리는 Row만들기
 function Row({ title, fetchUrl }) {
   const [movies, setMoives] = useState([]);
   const [movie, setMovie] = useState({});
-  const original = ("original");
+  const original = "original";
 
   // Modal창을 보여줄지 말지
   const [isVisble, setVisible] = useState(false);
@@ -17,22 +18,22 @@ function Row({ title, fetchUrl }) {
     setVisible(active);
   };
 
-  // axios 서버에 데이터 요청
-
+  // axios로 서버에 데이터 요청 20개만 갖고오게 slice
   useEffect(() => {
-    axios.get(fetchUrl, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-    .then((res)=>{
-      let result = res.data.slice(0, 20);
-      setMoives(result);
-    })
+    axios
+      .get(fetchUrl, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        let result = res.data.slice(0, 20);
+        setMoives(result);
+      });
   }, []);
 
   return (
-    /*컨테이너*/
+    /*화면에 보여지는 Row 컨테이너*/
     <div className="row">
       <h2>{title}</h2>
 
