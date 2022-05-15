@@ -13,18 +13,21 @@ import requests
 from rest_framework import status
 from json.decoder import JSONDecodeError
 
-
+# userviewset으로 api테스트
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
     
+# google login api 설정  
 state = getattr(settings, 'STATE')
 
 BASE_URL = 'http://localhost:8000/'
-GOOGLE_CALLBACK_URI = BASE_URL + 'accounts/google/callback/'
+GOOGLE_CALLBACK_URI = BASE_URL + 'allauth/google/callback/'
 
 #google_login 실행 후 로그인 성공 시, Callback 함수로 Code 값 전달받음
+##redirect url로 들어가면 "클라이언트 id", "redirect uri"를 포함한 정보를 url 파라미터로 함께 리다이렉트해준다.
+### 그러면 구글 로그인 창이 뜨고 알맞은 구글 로그인을 하면 callback url로 code값을 가져온다.
 def google_login(request):
     """
     Code Request
@@ -33,10 +36,13 @@ def google_login(request):
     client_id = getattr(settings, "SOCIAL_AUTH_GOOGLE_CLIENT_ID")
     return redirect(f"https://accounts.google.com/o/oauth2/v2/auth?client_id={client_id}&response_type=code&redirect_uri={GOOGLE_CALLBACK_URI}&scope={scope}")
 
+
 def google_callback(request):
     client_id = getattr(settings, "SOCIAL_AUTH_GOOGLE_CLIENT_ID")
     client_secret = getattr(settings, "SOCIAL_AUTH_GOOGLE_SECRET")
     code = request.GET.get('code')
+    
+    #위에서 받아온 code를 통해 google access token 요청
     """
     Access Token Request
     """
@@ -47,6 +53,8 @@ def google_callback(request):
     if error is not None:
         raise JSONDecodeError(error)
     access_token = token_req_json.get('access_token')
+    
+    #받아온 access token으로 email값을 google에 요천
     """
     Email Request
     """
@@ -57,6 +65,8 @@ def google_callback(request):
         return JsonResponse({'err_msg': 'failed to get email'}, status=status.HTTP_400_BAD_REQUEST)
     email_req_json = email_req.json()
     email = email_req_json.get('email')
+    
+    #전달받은 email, accesstoken, code를 갖고 회원가입/로그인 진행
     """
     Signup or Signin Request
     """

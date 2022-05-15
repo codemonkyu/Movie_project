@@ -10,6 +10,7 @@ class CustomOutstandingTokenAdmin(OutstandingTokenAdmin):
         return True
 
 
-admin.site.unregister(OutstandingToken)
+
 # admin.site.register(OutstandingToken, CustomOutstandingTokenAdmin)
 admin.site.register(User)
+admin.site.unregister(OutstandingToken)
