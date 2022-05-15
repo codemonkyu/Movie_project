@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import MovieSerializer, GenreSerializer, ReviewSerializer, MovieTitleSerializer
 from .models import  Movie, Genre, Review
 from accounts.models import  User
+from accounts.serializers import  UserSerializer
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 import random

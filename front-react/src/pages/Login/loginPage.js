@@ -111,6 +111,8 @@ const LoginPage = () => {
               </button>
               <p>
                 아직 계정이 없나요? <Link to={`/signup`}>가입하세요!</Link>
+                <br></br>
+                <a href="{% provider_login_url 'google' %}">구글 로그인</a>
               </p>
             </form>
           </div>

@@ -11,7 +11,7 @@ import {
 import "./NavBar.css";
 import "../pages/SearchPage/Search.css";
 import { useNavigate } from "react-router";
-// import search from "../../public/img/search.png";
+import "../pages/Login/loginPage.css";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -283,7 +283,10 @@ function NavBar() {
                 title={profile}
                 id="basic-nav-dropdown"
               >
-                <NavDropdown.Item className="profile_nav_child" href="#action2">
+                <NavDropdown.Item
+                  className="profile_nav_child"
+                  href="/loginpage"
+                >
                   로그아웃
                 </NavDropdown.Item>
               </NavDropdown>
