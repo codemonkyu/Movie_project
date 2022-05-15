@@ -285,7 +285,7 @@ function NavBar() {
               >
                 <NavDropdown.Item
                   className="profile_nav_child"
-                  href="/loginpage"
+                  // href="/loginpage"
                 >
                   로그아웃
                 </NavDropdown.Item>
