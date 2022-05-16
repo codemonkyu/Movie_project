@@ -49,6 +49,7 @@ function Search(props) {
               <h1 className="ganre-h1">"{state}"(으)로 검색한 결과</h1>
               {movies.map((movie) => (
                 <Movie
+                  movie={movie}
                   id={movie.id}
                   title={movie.title}
                   coverImg={movie.poster_path}
