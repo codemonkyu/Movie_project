@@ -22,6 +22,7 @@ const Modal = ({
     setPosterFade("poster-end");
     setModalAnimation("modal-end");
     console.log(modalAnimation);
+    getLike({id});
   }, []);
 
   const Btn = () => {
@@ -33,6 +34,31 @@ const Modal = ({
   const EmptyHeartImg = "img/EmptyHeart.png";
   //현재 상태
   const [liking, setLiking] = useState(like);
+
+  //좋아요한 영화 리스트 가져오기
+  const getLike = (id) =>{
+    axios({
+      url:"http://127.0.0.1:8000/movies/like_list/",
+      method:'get',
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    }).then((res) => {
+      console.log(res.data);
+      console.log(id.id); //영화 id
+      res.data.map((movie) => {
+        if(movie.id == id.id){
+          console.log(true);
+          setLiking(true);
+        }else {
+          console.log(false);
+          setLiking(false);
+        }
+      })
+      
+    })
+  }
+
 
   const setLikes = (id) => {
     axios({
