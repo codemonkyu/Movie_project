@@ -1,4 +1,5 @@
 import React from "react";
+import { FixedSizeGrid as Grid } from 'react-window'
 import Row from "../../components/Row";
 import requests from "../../components/requests";
 import Banner from "./Banner";
@@ -7,6 +8,8 @@ import NavBar from "../../components/NavBar.js";
 
 // requests / fetchurl 로  row 구성 & banner / navar 추가 메인화면구성
 function Main() {
+
+
   return (
     <div>
       <div className="main">
