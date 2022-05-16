@@ -102,7 +102,7 @@ function NavBar() {
         <Navbar.Collapse id="navbarScroll">
           <Nav style={{ maxHeight: "100px" }} navbarScroll>
             <Nav.Link href="/mainpage">홈</Nav.Link>
-            <Nav.Link href="#action1">추천</Nav.Link>
+            <Nav.Link href="/recommendPage">추천</Nav.Link>
             <div
               onMouseDown={() => {
                 onSetIsVisible(true);

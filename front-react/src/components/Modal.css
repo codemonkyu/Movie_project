@@ -128,5 +128,6 @@ input {
 
 .poster_gradient {
   height: 5px;
+
   background-image: linear-gradient(rgba(255, 255, 255, 0.918), #111);
 }

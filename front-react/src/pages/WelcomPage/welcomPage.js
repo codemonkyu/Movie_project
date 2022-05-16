@@ -8,6 +8,7 @@ import Main from "../MainPage/Main";
 import Genre from "../MovieGenre/Genre";
 import Search from "../SearchPage/Search";
 import LikePage from "../LikePage/LikePage";
+import Recommend from "../RecommendPage/Recommend";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
@@ -68,7 +69,7 @@ const WelcomPage = () => {
             </div>
           }
         />
-        {/* welcome page에서 연결되는 페이지 */}
+        {/* welcome page -> apps로 연결되는 페이지 */}
         <Route path="/loginpage/*" element={<LoginPage />} />
         <Route path="/signup/*" element={<SignUp />} />
         <Route path="/MainPage/*" element={<Main />} />
@@ -94,6 +95,7 @@ const WelcomPage = () => {
         <Route path="/tv/" element={<Genre genre={genre[18]} />} />
         <Route path="/search" element={<Search />} />
         <Route path="/likePage" element={<LikePage />} />
+        <Route path="/recommendPage" element={<Recommend />} />
       </Routes>
     </div>
   );
