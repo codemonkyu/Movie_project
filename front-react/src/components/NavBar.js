@@ -276,9 +276,9 @@ function NavBar() {
                   onChange={handleOnchange}
                   onKeyPress={onKeyPress}
                   type="text"
-                  placeholder="영화 제목, 장르 등"
-                  className="me-2"
-                  aria-label="Search"
+                  placeholder="영화 제목, 장르..."
+                  className="me-1"
+                  aria-label="검색기능"
                 />
                 <Button
                   onClick={handleKeyword}
@@ -286,7 +286,7 @@ function NavBar() {
                   variant="outline-danger"
                 >
                   <img
-                    className="search_button"
+                    className="search_image"
                     src="img/Search.png"
                     alt="searchbutton"
                   />

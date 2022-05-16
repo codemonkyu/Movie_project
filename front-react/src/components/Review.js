@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./Review.css";
 
 function Review(id) {
   //현재까지의 달린 리뷰객체 담기
@@ -10,7 +11,7 @@ function Review(id) {
   const dupCheck = [];
   //수정할 리뷰 id 담기
 
-  //리뷰 생성
+  //리뷰 생성 API 호출
   const createReview = () => {
     axios({
       url: "http://127.0.0.1:8000/movies/review/" + { id }.id.id + "/",
@@ -33,9 +34,13 @@ function Review(id) {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
-        }).then(() => {
-          setReviewList();
-        });
+        })
+          .then(() => {
+            setReviewList();
+          })
+          .catch((err) => {
+            alert("평점은 1 ~ 10 사이의 수 이어야 합니다.");
+          });
       }
     });
     setComment("");
@@ -79,9 +84,13 @@ function Review(id) {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
-        }).then(() => {
-          setReviewList();
-        });
+        })
+          .then(() => {
+            setReviewList();
+          })
+          .catch((err) => {
+            alert("평점은 1 ~ 10 사이의 수 이어야 합니다.");
+          });
       }
     });
   };
@@ -130,18 +139,31 @@ function Review(id) {
         value={rank}
       />
       <button className="commentBtn" onClick={() => createReview()}>
-        댓글달기
+        확인
       </button>
-      <hr/>
+      <hr />
       {reviews.map((review) => {
         dupCheck.push(review.user);
 
         return (
           <div>
-            <p>현재 로그인 사용자: {localStorage.getItem("pk")}</p>
-            <p>작성자: {review.user}</p>
-            <p>내용: {review.content}</p>
-            <p>평점: {review.rank}</p>
+            <h2>Reviews</h2>
+            {/* 공백 */} &nbsp;
+            <table>
+              <tr>
+                <td>작성자</td>
+                <td>내용</td>
+                <td>평점(1~10)</td>
+                <td>작성날짜</td>
+              </tr>
+              <tr>
+                {/* <td>로그인한사람{localStorage.getItem("pk")}</td> */}
+                <td>{review.user}번째 익명</td>
+                <td>{review.content}</td>
+                <td>{review.rank}</td>
+                <td format="yyyy-MM-dd">{review.created_at}</td>
+              </tr>
+            </table>
             {localStorage.getItem("pk") == review.user ? (
               <div>
                 <button
@@ -164,7 +186,6 @@ function Review(id) {
           </div>
         );
       })}
-
     </div>
   );
 }

@@ -87,7 +87,17 @@
   color: black;
 }
 
-.search_button {
+/* search버튼 이미지 크기 */
+.search_image {
   width: 23px;
   height: 23px;
+}
+
+.me-1 {
+  background: #343d46;
+}
+/* search검색 hover기능 */
+.me-2:hover {
+  background-color: #ffffff;
+  transition: all 0.2s;
 }

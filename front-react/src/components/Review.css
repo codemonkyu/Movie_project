@@ -1,0 +1,55 @@
+.commentBtn {
+  color: black;
+  border: 1px solid gray;
+  background-color: white;
+  display: table-cell;
+  border-radius: 6px;
+}
+
+.commentBtn:hover {
+  color: white;
+  background-color: black;
+}
+
+.editBtn {
+  color: black;
+  border: 1px solid gray;
+  background-color: white;
+  margin-right: -1px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.editBtn:hover {
+  color: white;
+  background-color: rgb(114, 145, 54);
+}
+
+.deleteBtn {
+  color: black;
+  border: 1px solid gray;
+  background-color: white;
+  margin-left: -1px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.deleteBtn:hover {
+  color: white;
+  background-color: rgb(205, 50, 184);
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+}
+
+td {
+  padding: 20px;
+}

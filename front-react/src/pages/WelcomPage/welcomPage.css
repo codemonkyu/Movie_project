@@ -72,3 +72,9 @@
 .box-margin {
   margin-top: 15px;
 }
+
+.welcome_button:hover {
+  color: #000;
+  background-color: #ffffff;
+  transition: all 0.2s;
+}

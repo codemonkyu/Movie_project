@@ -94,15 +94,15 @@ const Modal = ({
           </button>
         </h2>
         {/* 영화 포스터 backdrop */}
-        <div className="poster_contain">
+        <div>
           <img
             className={"poster poster-start " + posterFade}
             src={coverImg}
             alt={title}
           />
-
-          <div className="poster_gradient" />
         </div>
+        {/* 포스터 바텀 페이드 효과 */}
+        <div className="poster_gradient"></div>
 
         {/* 영화 정보 칸 */}
         <div>

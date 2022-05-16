@@ -48,12 +48,12 @@ const WelcomPage = () => {
               </div>
               <div className="box">
                 <div className="box-margin">
-                  <p className="bigfont"> 모든 영화가 이곳에! </p>
+                  <p className="bigfont"> 모든 영화가 이곳에 </p>
                   <p className="smallfont">
-                    원하는 영화를 검색하고 시청하세요.
+                    자신에게 맞는 영화를 추천받아보세요!
                   </p>
                   <Button
-                    className="button"
+                    className="welcome_button"
                     variant="secondary"
                     size="lg"
                     active
