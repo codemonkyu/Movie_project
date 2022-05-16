@@ -29,6 +29,7 @@ const LoginPage = () => {
         if (res.data.access_token) {
           localStorage.clear();
           localStorage.setItem("token", res.data.access_token);
+          localStorage.setItem("refresh_token", res.data.refresh_token);
           localStorage.setItem("user", JSON.stringify(res.data.user.email));
           localStorage.setItem("pk", JSON.stringify(res.data.user.pk));
           navigate("/mainpage");

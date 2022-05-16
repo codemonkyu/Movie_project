@@ -145,6 +145,26 @@ function Review(id) {
       {reviews.map((review) => {
         dupCheck.push(review.user);
 
+        //reivew 생성날짜 "년-월-일" 로 포맷팅
+        let date = review.created_at;
+        let datetime =
+          date.slice(0, 4) +
+          "년 " +
+          date.slice(5, 7) +
+          "월 " +
+          date.slice(8, 10) +
+          "일";
+
+        //reivew 수정날짜 "년-월-일" 로 포맷팅
+        let update = review.updated_at;
+        let updatetime =
+          update.slice(0, 4) +
+          "년 " +
+          update.slice(5, 7) +
+          "월 " +
+          update.slice(8, 10) +
+          "일";
+
         return (
           <div>
             <h2>Reviews</h2>
@@ -155,13 +175,15 @@ function Review(id) {
                 <td>내용</td>
                 <td>평점(1~10)</td>
                 <td>작성날짜</td>
+                <td>수정날짜</td>
               </tr>
               <tr>
                 {/* <td>로그인한사람{localStorage.getItem("pk")}</td> */}
-                <td>{review.user}번째 익명</td>
+                <td>{review.user}번째 익명이</td>
                 <td>{review.content}</td>
-                <td>{review.rank}</td>
-                <td format="yyyy-MM-dd">{review.created_at}</td>
+                <td>{review.rank} 점</td>
+                <td>{datetime}</td>
+                <td>{updatetime}</td>
               </tr>
             </table>
             {localStorage.getItem("pk") == review.user ? (

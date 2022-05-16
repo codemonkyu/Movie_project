@@ -73,10 +73,12 @@ function NavBar() {
       .post("http://127.0.0.1:8000/accounts/logout/", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
+          Refresh: localStorage.getItem("refresh_token"),
         },
       })
-      .then((response) => {
-        localStorage.clear();
+      .then(() => {
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/loginpage");
       });
   };
@@ -267,7 +269,7 @@ function NavBar() {
               )}
               {isVisble && <OutsideClick onSetIsVisible={onSetIsVisible} />}
             </div>
-            <Nav.Link href="/likePage">내가 찜한 영화</Nav.Link>
+            <Nav.Link href="/likePage">내가 찜한 컨텐츠</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
@@ -300,7 +302,6 @@ function NavBar() {
                 <NavDropdown.Item
                   className="profile_nav_child"
                   onClick={onLogout}
-                  // href="/loginpage"
                 >
                   로그아웃
                 </NavDropdown.Item>

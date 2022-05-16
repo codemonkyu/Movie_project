@@ -83,7 +83,7 @@ const Modal = ({
       <div>
         {/* 영화타이틀 & 좋아요기능 */}
         <h2 className="h2-padding">
-          {title}{" "}
+          {title}
           <button className="button-right" onClick={() => setLikes({ id })}>
             <img
               className="heart"
