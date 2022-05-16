@@ -45,6 +45,7 @@ function Recommend(props) {
               <h1 className="ganre-h1">내가 좋아할 영화들</h1>
               {movies.map((movie) => (
                 <Movie
+                  movie={movie}
                   id={movie.id}
                   title={movie.title}
                   coverImg={movie.poster_path}
