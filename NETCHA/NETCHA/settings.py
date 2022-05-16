@@ -76,7 +76,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 #allauth 이메일 인증관련
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

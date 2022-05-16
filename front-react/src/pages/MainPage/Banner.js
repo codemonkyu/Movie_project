@@ -43,9 +43,7 @@ function Banner() {
         </h1>
         <div className="banner__buttons">
           <button className="banner__button">View</button>
-          <button className="banner__button">
-            <big>+</big> 내가 찜한 컨텐츠
-          </button>
+          <button className="banner__button">+ 내가 찜한 컨텐츠</button>
         </div>
 
         {/* overview길이 */}

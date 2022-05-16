@@ -22,7 +22,7 @@ const Modal = ({
     setPosterFade("poster-end");
     setModalAnimation("modal-end");
     console.log(modalAnimation);
-    getLike({id});
+    getLike({ id });
   }, []);
 
   const Btn = () => {
@@ -36,10 +36,11 @@ const Modal = ({
   const [liking, setLiking] = useState(like);
 
   //좋아요한 영화 리스트 가져오기
-  const getLike = (id) =>{
+  //true 유지 , false 유지 내가찜한페이지에서 유지 x
+  const getLike = (id) => {
     axios({
-      url:"http://127.0.0.1:8000/movies/like_list/",
-      method:'get',
+      url: "http://127.0.0.1:8000/movies/like_list/",
+      method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -47,18 +48,16 @@ const Modal = ({
       console.log(res.data);
       console.log(id.id); //영화 id
       res.data.map((movie) => {
-        if(movie.id == id.id){
+        if (movie.id == id.id) {
           console.log(true);
           setLiking(true);
-        }else {
+        } else {
           console.log(false);
           setLiking(false);
         }
-      })
-      
-    })
-  }
-
+      });
+    });
+  };
 
   const setLikes = (id) => {
     axios({
