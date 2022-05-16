@@ -127,12 +127,14 @@ function Review(id) {
     <div className="review-list">
       <hr />
       <input
+        className="review-input"
         type="text"
         placeholder="댓글 내용"
         onChange={(event) => setComment(event.target.value)}
         value={comment}
       />
       <input
+        className="review-input"
         type="number"
         placeholder="평점 (1~10점)"
         onChange={(event) => setRank(event.target.value)}

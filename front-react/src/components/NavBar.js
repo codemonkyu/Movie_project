@@ -69,18 +69,11 @@ function NavBar() {
 
   //로그아웃
   const onLogout = () => {
-    axios
-      .post("http://127.0.0.1:8000/accounts/logout/", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          Refresh: localStorage.getItem("refresh_token"),
-        },
-      })
-      .then(() => {
-        localStorage.removeItem("token");
-        sessionStorage.removeItem("token");
-        navigate("/loginpage");
-      });
+    const token = localStorage.getItem("token")
+    if (token) {
+      localStorage.clear();
+      navigate("/loginpage");
+    }
   };
 
   const profile = <img className="user-logo" src="img/NavAvatar.png" alt="" />;
