@@ -11,8 +11,8 @@ const SignUp = () => {
   let [inputPwValidate, setInputPwValidate] = useState("");
   const check =
     inputEmail.includes("@") &&
-    inputPw.length > 3 &&
-    inputPwValidate.length > 3;
+    inputPw.length > 7 &&
+    inputPwValidate.length > 7;
 
   // email 입력값
   const handleInputEmail = (e) => {
@@ -43,7 +43,6 @@ const SignUp = () => {
       alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
       return false;
     }
-
     //register API 호출
     axios
       .post("http://127.0.0.1:8000/register/", user)
@@ -110,7 +109,7 @@ const SignUp = () => {
               name="password"
               id="password-field"
               className="login-form-field"
-              placeholder="Password"
+              placeholder="Password (특수문자 포함 8자 이상)"
             />
             <input
               value={inputPwValidate}
@@ -119,7 +118,7 @@ const SignUp = () => {
               name="password"
               id="password-field"
               className="login-form-field"
-              placeholder="Password"
+              placeholder="Password (특수문자 포함 8자 이상)"
             />
             <input
               onClick={onSubmit}
