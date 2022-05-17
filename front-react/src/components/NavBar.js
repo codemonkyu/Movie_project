@@ -281,11 +281,7 @@ function NavBar() {
                   className="me-2"
                   variant="outline-danger"
                 >
-                  <img
-                    className="search_image"
-                    src="img/Search.png"
-                    alt="searchbutton"
-                  />
+                  Search
                 </Button>
               </Form>
               <NavDropdown

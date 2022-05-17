@@ -40,12 +40,13 @@ const SearchHeader = memo(({ onSearch }) => {
         ref={inputRef}
         className={styles.input + "input"}
         type="search"
-        placeholder="Search..."
+        placeholder="Search...💬"
         onKeyPress={onKeyPress}
       />
       <button className={styles.button} type="submit" onClick={onClick}>
-        <b>검색</b>
+        <b>🔍</b>
       </button>
+      <button onClick={handMainpage}>🏠Home</button>
     </header>
   );
 });
