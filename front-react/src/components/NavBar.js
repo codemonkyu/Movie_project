@@ -263,6 +263,7 @@ function NavBar() {
               {isVisble && <OutsideClick onSetIsVisible={onSetIsVisible} />}
             </div>
             <Nav.Link href="/likePage">내가 찜한 컨텐츠</Nav.Link>
+            <Nav.Link href="/YoutubeApp">YouTube</Nav.Link>
           </Nav>
           <Navbar.Collapse className="justify-content-end">
             <Nav>

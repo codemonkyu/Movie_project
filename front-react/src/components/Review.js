@@ -160,9 +160,9 @@ function Review(id) {
         let date = review.created_at;
         let datetime =
           date.slice(0, 4) +
-          "년 " +
+          "년" +
           date.slice(5, 7) +
-          "월 " +
+          "월" +
           date.slice(8, 10) +
           "일";
 
@@ -170,9 +170,9 @@ function Review(id) {
         let update = review.updated_at;
         let updatetime =
           update.slice(0, 4) +
-          "년 " +
+          "년" +
           update.slice(5, 7) +
-          "월 " +
+          "월" +
           update.slice(8, 10) +
           "일";
 
@@ -190,7 +190,7 @@ function Review(id) {
               </tr>
               <tr>
                 {/* <td>로그인한사람{localStorage.getItem("pk")}</td> */}
-                <td>{localStorage.getItem("user")}</td>
+                {/* <td>{localStorage.getItem("user")}</td> */}
                 <td>{review.user}번째 익명이</td>
                 <td>{review.content}</td>
                 <td>{review.rank} 점</td>

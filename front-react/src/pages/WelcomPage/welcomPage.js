@@ -9,6 +9,9 @@ import Genre from "../MovieGenre/Genre";
 import Search from "../SearchPage/Search";
 import LikePage from "../LikePage/LikePage";
 import Recommend from "../RecommendPage/Recommend";
+import YoutubeApp from "../../YoutubeApp";
+import axios from "axios";
+import Youtube from "../../service/youtube";
 
 const WelcomPage = () => {
   let navigate = useNavigate();
@@ -35,6 +38,13 @@ const WelcomPage = () => {
     "전쟁",
     "TV 영화",
   ];
+
+  //유튜브 검색 기능 API
+  const httpClient = axios.create({
+    baseURL: "https://www.googleapis.com/youtube/v3",
+    params: { key: process.env.REACT_APP_YOUTUBE_API_KEY },
+  });
+  const youtube = new Youtube(httpClient);
 
   return (
     //welcomepage 화면
@@ -96,6 +106,7 @@ const WelcomPage = () => {
         <Route path="/search" element={<Search />} />
         <Route path="/likePage" element={<LikePage />} />
         <Route path="/recommendPage" element={<Recommend />} />
+        <Route path="/YoutubeApp" element={<YoutubeApp youtube={youtube} />} />
       </Routes>
     </div>
   );

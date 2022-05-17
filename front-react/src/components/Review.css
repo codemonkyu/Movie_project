@@ -39,7 +39,7 @@
   background-color: rgb(205, 50, 184);
 }
 
-input {
+.review-input {
   width: 300px;
   height: 40px;
   font-size: 15px;
@@ -51,9 +51,4 @@ input {
 
 td {
   padding: 20px;
-}
-
-
-.review-input {
-  margin-left: 10px;
 }

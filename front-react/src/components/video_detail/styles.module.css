@@ -1,0 +1,12 @@
+.detail {
+  padding: 0.2em;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+body {
+  color: white;
+  background-color: black;
+}
