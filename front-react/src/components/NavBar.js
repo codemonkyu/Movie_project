@@ -12,7 +12,6 @@ import "./NavBar.css";
 import "../pages/SearchPage/Search.css";
 import { useNavigate } from "react-router";
 import "../pages/Login/loginPage.css";
-import axios from "axios";
 
 function NavBar() {
   const navigate = useNavigate();

@@ -14,15 +14,22 @@ function Search(props) {
 
   //serch API 호출
   async function getMovies() {
-    const res = await fetch("http://127.0.0.1:8000/movies/search/" + state, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_APIURL}/movies/search/` + state,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
     const movies = await res.json();
     setMovies(movies[0]);
     setLoading(false);
   }
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   useEffect(() => {
     getMovies();
   }, []);

@@ -5,7 +5,6 @@ import Movie from "../../components/Movie";
 import "./Genre.css";
 import { Container, Row } from "react-bootstrap";
 
-
 function Genre(props) {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
@@ -14,7 +13,7 @@ function Genre(props) {
   // genre별 영화 가져오는 API
   async function getMovies() {
     const res = await fetch(
-      "http://127.0.0.1:8000/movies/genre/" + props.genre,
+      `${process.env.REACT_APP_APIURL}/movies/genre/` + props.genre,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),

@@ -14,7 +14,8 @@ function Review(id) {
   //리뷰 생성 API 호출
   const createReview = () => {
     axios({
-      url: "http://127.0.0.1:8000/movies/review/" + { id }.id.id + "/",
+      url:
+        `${process.env.REACT_APP_APIURL}/movies/review/` + { id }.id.id + "/",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -25,7 +26,9 @@ function Review(id) {
       } else {
         axios({
           url:
-            "http://127.0.0.1:8000/movies/review_create/" + { id }.id.id + "/",
+            `${process.env.REACT_APP_APIURL}/movies/review_create/` +
+            { id }.id.id +
+            "/",
           method: "post",
           data: {
             content: { comment }.comment,
@@ -54,7 +57,8 @@ function Review(id) {
   //리뷰리스트 보여주기
   const setReviewList = () => {
     axios({
-      url: "http://127.0.0.1:8000/movies/review/" + { id }.id.id + "/",
+      url:
+        `${process.env.REACT_APP_APIURL}/movies/review/` + { id }.id.id + "/",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -67,7 +71,8 @@ function Review(id) {
   //리뷰 수정하기
   const editReview = (reviewuser, reviewid) => {
     axios({
-      url: "http://127.0.0.1:8000/movies/review/" + { id }.id.id + "/",
+      url:
+        `${process.env.REACT_APP_APIURL}/movies/review/` + { id }.id.id + "/",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -75,7 +80,10 @@ function Review(id) {
     }).then(() => {
       if (localStorage.getItem("pk") == reviewuser) {
         axios({
-          url: "http://127.0.0.1:8000/movies/review_edit/" + reviewid + "/",
+          url:
+            `${process.env.REACT_APP_APIURL}/movies/review_edit/` +
+            reviewid +
+            "/",
           method: "put",
           data: {
             content: { comment }.comment,
@@ -98,7 +106,8 @@ function Review(id) {
   //리뷰 삭제하기
   const deleteReview = (reviewuser, reviewid) => {
     axios({
-      url: "http://127.0.0.1:8000/movies/review/" + { id }.id.id + "/",
+      url:
+        `${process.env.REACT_APP_APIURL}/movies/review/` + { id }.id.id + "/",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -107,7 +116,7 @@ function Review(id) {
       if (localStorage.getItem("pk") == reviewuser) {
         axios({
           url:
-            "http://127.0.0.1:8000/movies/review_delete/" +
+            `${process.env.REACT_APP_APIURL}/movies/review_delete/` +
             { id }.id.id +
             "/" +
             reviewid +

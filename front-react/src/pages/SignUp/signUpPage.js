@@ -45,7 +45,7 @@ const SignUp = () => {
     }
     //register API 호출
     axios
-      .post("http://127.0.0.1:8000/register/", user)
+      .post(`${process.env.REACT_APP_APIURL}/register/`, user)
       .then((res) => {
         if (res.data.access_token) {
           console.log(res.data.access_token);
@@ -59,6 +59,7 @@ const SignUp = () => {
         }
       })
       .catch((err) => {
+        console.log(user);
         console.log(err);
         alert("이미 존재하는 아이디 입니다.");
       });
@@ -86,7 +87,7 @@ const SignUp = () => {
   return (
     <div className={"login-bg bg-start " + bgFade}>
       <div className="logo-box">
-        <img className="logo" src="img/Navlogo.png" />
+        <img className="logo" src="img/Navlogo.png" alt="logo" />
       </div>
       <div className="box"></div>
       <div className="login-body">

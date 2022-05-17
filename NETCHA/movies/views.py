@@ -182,6 +182,12 @@ def genre_list(request, genre_name):
 @api_view(['GET'])
 def recommend(request):
 
+    all_genre = Genre.objects.all()
+    dict={}
+
+    for g in all_genre:
+        dict[g.id] = 0
+
     # 7점 이상 리뷰 영화들
     movies_reviews = Review.objects.filter(Q(user_id=request.user.pk)&Q(rank__gte=7.0)).values_list('movie_id')
 
@@ -189,15 +195,19 @@ def recommend(request):
     user=request.user
     movies_likes = user.like_movies.values_list('id')
 
-    all_genre = Genre.objects.all()
-
-    dict={}
-    for g in all_genre:
-        dict[g.id] = 0
-
     list1 = []
     list1 = list(movies_reviews) + list(movies_likes)
     list1 = set(list1)
+    result=[]
+
+    if not list1:
+        movies = Movie.objects.all().order_by('-popularity')
+
+        for movie in movies:
+            result.append(movie)
+            if len(result)==30:
+                serializer1 = MovieSerializer(result, many=True)
+                return Response(serializer1.data)
 
     movies_list = []
     for li in  list1:
@@ -211,20 +221,18 @@ def recommend(request):
     sorted_dict = sorted(dict.items(), key = lambda item: item[1], reverse=True)
     high_score = sorted_dict[0][1]
 
-    print(sorted_dict)
     count = 0
     for dd in sorted_dict:
         if dd[1]== high_score:
             count+=1
 
     num = 30/count
-    result=[]
     
     for i in range(count):
         movies = Movie.objects.filter(Q(genres__id__contains=sorted_dict[i][0])).order_by('-popularity')[:num]
 
         for movie in movies:
-            if not movie in result and not movies_reviews.filter(movie_id=movie.pk).exists() and not movies_likes.filter(id=movie.pk).exists():
+            if not movie in result and not (movie.id,) in list1:
                 result.append(movie)
 
     if len(result) < 30:
@@ -232,7 +240,7 @@ def recommend(request):
             movies = Movie.objects.filter(Q(genres__id__contains=sorted_dict[count][0])).order_by('-popularity')
         
             for movie in movies:
-                if not movie in result:
+                if not movie in result and not (movie.id,) in list1:
                     result.append(movie)
                 if len(result)==30:
                     break
@@ -240,7 +248,7 @@ def recommend(request):
             movies = Movie.objects.all().order_by('-vote_average')
 
             for movie in movies:
-                if not movie in result:
+                if not movie in result and not (movie.id,) in list1:
                     result.append(movie)
                 if len(result)==30:
                     break

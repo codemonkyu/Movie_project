@@ -26,7 +26,7 @@ const LoginPage = () => {
 
     // REST API에 POST, email과 pw가 동일하다면 Access token을 localStorage에 저장.
     axios
-      .post("http://127.0.0.1:8000/accounts/login/", user)
+      .post(`${process.env.REACT_APP_APIURL}/accounts/login/`, user)
       .then((res) => {
         if (res.data.access_token) {
           localStorage.clear();

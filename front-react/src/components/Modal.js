@@ -28,7 +28,7 @@ const Modal = ({
   const Btn = () => {
     setVisible(false);
   };
-  const base_url_like = "http://127.0.0.1:8000/movies/like/";
+  const base_url_like = `${process.env.REACT_APP_APIURL}/movies/like/`;
   const [like, setLike] = useState();
   const HeartImg = "img/Heart.png";
   const EmptyHeartImg = "img/EmptyHeart.png";
@@ -39,7 +39,7 @@ const Modal = ({
   //true 유지 , false 유지 내가찜한페이지에서 유지 x
   const getLike = (id) => {
     axios({
-      url: "http://127.0.0.1:8000/movies/like_list/",
+      url: `${process.env.REACT_APP_APIURL}/movies/like_list/`,
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),

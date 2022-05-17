@@ -11,11 +11,14 @@ function LikePage(props) {
   let [bgFade, setBgFade] = useState("");
 
   async function getMovies() {
-    const res = await fetch("http://127.0.0.1:8000/movies/like_list/", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_APIURL}/movies/like_list/`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
     const movies = await res.json();
     setMovies(movies);
     setLoading(false);

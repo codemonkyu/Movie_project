@@ -29,4 +29,4 @@ mysql:5.7
 docker run --name mywas -d -p 8000:8000 --net msanet --net-alias=mywas ljk0509/ljk_django:movie_app
 
 #client - reactJS
-docker run --name myweb -d -p 80:80 --net msanet vega2k/djangoreact:react
+docker run --name myweb -d -p 80:80 --net msanet ljk0509/ljk_django:react_v2
