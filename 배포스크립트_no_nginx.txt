@@ -1,0 +1,32 @@
+docker network create --driver bridge msanet
+
+mkdir -p /work/test3/db/conf
+
+cat <<EOF | sudo tee /work/test3/db/conf/my.cnf
+[client]
+default-character-set = utf8mb4
+
+[mysql]
+default-character-set = utf8mb4
+
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server           = utf8mb4
+collation-server               = utf8mb4_unicode_ci
+EOF
+
+#db
+docker run --name mysql-svc -d --net msanet --net-alias=mysql-svc \
+-v /work/test3/db/conf:/etc/mysql/conf.d \
+-e MYSQL_ROOT_PASSWORD='mysqlroot' \
+-e MYSQL_DATABASE='moive_app' \
+-e MYSQL_USER='python' \
+-e MYSQL_PASSWORD='python' \
+-e MYSQL_ROOT_HOST='%' \
+mysql:5.7
+
+#server - Django
+docker run --name mywas -d -p 8000:8000 --net msanet --net-alias=mywas ljk0509/ljk_django:movie_app
+
+#client - reactJS
+docker run --name myweb -d -p 80:80 --net msanet vega2k/djangoreact:react

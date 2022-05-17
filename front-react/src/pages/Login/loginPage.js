@@ -4,6 +4,7 @@ import SignUp from "../SignUp/signUpPage";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { GoogleLogin } from "react-google-login";
 
 const LoginPage = () => {
   let navigate = useNavigate();
@@ -17,6 +18,7 @@ const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    // 우리는 이메일과 pw만 필요하다
     const user = {
       email: inputEmail,
       password: inputPw,
@@ -40,16 +42,18 @@ const LoginPage = () => {
         }
       })
       .catch((err) => {
-        alert("아이디 또는 비밀번호가 일치하지 않습니다");
+        alert("아이디 또는 비밀번호가 일치하지 않거나 없는 아이디 입니다.");
         setInputEmail("");
         setInputPw("");
       });
   };
 
+  // 입력한 이메일값
   const handleInputEmail = (e) => {
     setInputEmail(e.target.value);
   };
 
+  // 입력한 패스워드값
   const handleInputPw = (e) => {
     setInputPw(e.target.value);
   };
@@ -115,8 +119,6 @@ const LoginPage = () => {
               </button>
               <p>
                 아직 계정이 없나요? <Link to={`/signup`}>가입하세요!</Link>
-                <br></br>
-                <a href="{% provider_login_url 'google' %}">구글 로그인</a>
               </p>
             </form>
           </div>

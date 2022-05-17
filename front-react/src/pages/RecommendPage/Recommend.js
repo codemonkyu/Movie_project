@@ -38,7 +38,7 @@ function Recommend(props) {
           <NavBar />
         </div>
         {loading ? (
-          <h1 id="main-h1">Loading...</h1>
+          <h1 id="main-h1">먼저 리뷰 작성 또는 컨텐츠를 찜해주세요!</h1>
         ) : (
           <Container fluid>
             <Row>
