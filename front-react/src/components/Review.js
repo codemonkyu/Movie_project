@@ -181,6 +181,7 @@ function Review(id) {
               </tr>
               <tr>
                 {/* <td>로그인한사람{localStorage.getItem("pk")}</td> */}
+                <td>{localStorage.getItem("user")}</td>
                 <td>{review.user}번째 익명이</td>
                 <td>{review.content}</td>
                 <td>{review.rank} 점</td>

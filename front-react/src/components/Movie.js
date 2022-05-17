@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 import "../components/Movie.css";
 import { Col } from "react-bootstrap";
-import { useState } from 'react'
+import { useState } from "react";
 import BodyBlackoutStyle from "./BodyBlackoutStyle";
 import Modal from "./Modal";
 
@@ -13,7 +13,7 @@ function Movie(props) {
     setVisible(active);
   };
   const original = "original";
-  
+
   const styles = {
     col: {
       paddingLeft: 5,
@@ -26,7 +26,6 @@ function Movie(props) {
         <img
           className="movieImg"
           onClick={() => {
-            console.log("하이");
             setMovie(props.movie);
             onSetIsVisible(true);
           }}
@@ -36,20 +35,20 @@ function Movie(props) {
       </div>
 
       <div>
-          {isVisble && <BodyBlackoutStyle onSetIsVisible={onSetIsVisible} />}
-          {isVisble && (
-            <Modal
-              id={movie.id}
-              coverImg={`${base_url}${original}${movie.backdrop_path}`}
-              title={movie.title}
-              overview={movie.overview}
-              release_date={movie.release_date}
-              runtime={movie.runtime}
-              genres={movie.genres}
-              setVisible={setVisible}
-            />
-          )}
-        </div>
+        {isVisble && <BodyBlackoutStyle onSetIsVisible={onSetIsVisible} />}
+        {isVisble && (
+          <Modal
+            id={movie.id}
+            coverImg={`${base_url}${original}${movie.backdrop_path}`}
+            title={movie.title}
+            overview={movie.overview}
+            release_date={movie.release_date}
+            runtime={movie.runtime}
+            genres={movie.genres}
+            setVisible={setVisible}
+          />
+        )}
+      </div>
     </Col>
   );
 }

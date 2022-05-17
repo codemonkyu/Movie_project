@@ -48,7 +48,7 @@ const Modal = ({
       console.log(res.data);
       console.log(id.id); //영화 id
       res.data.map((movie) => {
-        if (movie.id == id.id) {
+        if (movie.id === id.id) {
           console.log(true);
           setLiking(true);
         } else {

@@ -42,7 +42,9 @@ function LikePage(props) {
         ) : (
           <Container fluid>
             <Row>
-              <h1 className="ganre-h1">내가 찜한 영화들</h1>
+              <h1 className="ganre-h1">
+                {localStorage.getItem("user")}님이 찜한 컨텐츠
+              </h1>
               {movies.map((movie) => (
                 <Movie
                   movie={movie}
