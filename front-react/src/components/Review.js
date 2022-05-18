@@ -153,6 +153,8 @@ function Review(id) {
         확인
       </button>
       <hr />
+      <h2>Reviews</h2>
+
       {reviews.map((review) => {
         dupCheck.push(review.user);
 
@@ -178,8 +180,6 @@ function Review(id) {
 
         return (
           <div>
-            <h2>Reviews</h2>
-            {/* 공백 */} &nbsp;
             <table>
               <tr>
                 <td>작성자</td>
@@ -191,7 +191,7 @@ function Review(id) {
               <tr>
                 {/* <td>로그인한사람{localStorage.getItem("pk")}</td> */}
                 {/* <td>{localStorage.getItem("user")}</td> */}
-                <td>{review.user}번째 익명이</td>
+                <td>{review.user}번 익명이</td>
                 <td>{review.content}</td>
                 <td>{review.rank} 점</td>
                 <td>{datetime}</td>

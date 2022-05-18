@@ -124,7 +124,6 @@ button {
 }
 
 .poster_gradient {
-  height: 5px;
-
-  background-image: linear-gradient(rgba(255, 255, 255, 0.918), #111);
+  height: 10px;
+  background-image: linear-gradient(180deg, rgba(34, 29, 29, 0.918), #111);
 }
