@@ -1,0 +1,65 @@
+kubernetes 배포 순서 
+
+1. EKS 클러스터 만들기 
+
+2. RDS console -> DB 설정 -> DB만들기 
+- mysql선택 (버전 5.7.37)
+- 템플릿 : 프로덕션
+- DB이름 / 사용자 이름 / PW (*사용자이름 PW 기억하기!)
+- 인스턴스 기본
+- VPC설정 -> 클러스터 만들때 생성한 VPC
+- 보안그룹 설정 : inbound: 모든TCP
+- 데이터베이스 포트 :3306
+- 데이터베이스인증옵션: 암호인증
+
+3. 배포순서 (yaml파일 있는곳에서 실행)
+
+# 장고 app 올리기
+$kubectl apply -f django_deploy.yml
+
+# 장고 service 올리기
+$kubectl apply -f django_svc.yml
+
+#rds db 올리기
+$kubectl apply -f rds_svc.yaml
+
+#react app 올리기
+$kubectl apply -f react_deploy.yml
+
+#react service올리기
+$kubectl apply -f react_svc.yml
+
+#centos로 올리기 ( 접속해서 rds에 아이디 만드는 용도 )
+$kubectl apply -f centospod.yml
+
+#centos 컨테이너 접속
+$kubectl exec -it centos -- sh
+
+#mysql 설치
+$yum install mysql mysql-* -y
+
+#rds 엔드포인트 접속
+$mysql -h movieapp.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com -u movie_app -p
+
+#$mysql -h movieapp.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com -u [RDS 사용자이름] -p
+
+PWD: [RDS만들때 password입력]
+
+
+##mysql 데이터베이스생성
+MySQL [(none)]> CREATE DATABASE movie_app;
+
+##데이터 베이스 사용할 유저 생성
+MySQL [(none)]> CREATE USER 'movie'@'%' IDENTIFIED BY 'movie';
+
+##데이터 베이스 권한 주기 
+MySQL [(none)]> GRANT ALL PRIVILEGES ON movie_app.* TO 'movie'@'%';
+
+##권한 주기
+MySQL [(none)]> flush privileges;
+
+##데이터베이스 확인
+MySQL [(none)]> show databases;
+
+##mysql 나가기
+MySQL [(none)]> exit;

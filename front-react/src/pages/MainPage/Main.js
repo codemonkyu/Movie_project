@@ -17,9 +17,9 @@ function Main() {
         <Row title="TV 시리즈" fetchUrl={requests.fetchDramas} />
         <Row title="몰래보는 애니메이션" fetchUrl={requests.fetchAnimations} />
         <Row title="눈물 빼는 코미디" fetchUrl={requests.fetchComedies} />
+        <Row title="상상자극 판타지" fetchUrl={requests.fetchFantasy} />
         <Row title="간담이 서늘한 공포" fetchUrl={requests.fetchHorors} />
         <Row title="연애 세포 자극 로맨스" fetchUrl={requests.fetchRomaces} />
-        <Row title="다큐멘터리" fetchUrl={requests.fetchDocumentaries} />
       </div>
       {/* <div className="footer">
         <p>Copyrigth@NETCHA</p>

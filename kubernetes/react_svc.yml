@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-svc
+  namespace: default
+spec:
+  selector:
+    app: react
+  type: LoadBalancer
+  ports:
+  - name: react
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  

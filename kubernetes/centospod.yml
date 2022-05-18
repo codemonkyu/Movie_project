@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "centos"
+  namespace: default
+  labels:
+    app: "centos"
+spec:
+  containers:
+    - name: centos
+      image: ljk0509/ljk_django:v1
+      ports:
+        - containerPort: 80
