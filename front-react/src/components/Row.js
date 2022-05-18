@@ -27,7 +27,7 @@ function Row({ title, fetchUrl }) {
         },
       })
       .then((res) => {
-        let result = res.data.slice(0, 20);
+        let result = res.data.slice(30, 50);
         setMoives(result);
       });
   }, []);
