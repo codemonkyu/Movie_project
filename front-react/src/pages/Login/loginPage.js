@@ -4,7 +4,6 @@ import SignUp from "../SignUp/signUpPage";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { GoogleLogin } from "react-google-login";
 
 const LoginPage = () => {
   let navigate = useNavigate();

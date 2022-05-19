@@ -20,7 +20,7 @@ cat <<EOF | sudo tee /work/test3/db/env/.env
 MYSQL_HOST=mysql-svc
 MYSQL_PORT=3306
 MYSQL_ROOT_PASSWORD=mysqlroot
-MYSQL_DATABASE=django_db
+MYSQL_DATABASE=movie_app
 MYSQL_USER=python
 MYSQL_PASSWORD=python
 MYSQL_ROOT_HOST='%'
@@ -42,7 +42,7 @@ services:
     env_file: /work/test3/db/env/.env
 
   mywas:
-    image: vega2k/djangoreact:django
+    image: ljk0509/project:django
     ports:
       - "8000:8000"
     depends_on:
@@ -50,7 +50,7 @@ services:
     restart: always
 
   mynginx:
-    image: vega2k/djangoreact:react_docker
+    image: ljk0509/project:react_err5
     depends_on:
       - mywas  
     ports:

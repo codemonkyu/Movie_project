@@ -12,16 +12,24 @@ kubernetes 배포 순서
 - 데이터베이스 포트 :3306
 - 데이터베이스인증옵션: 암호인증
 
+- DB만들기
+- 파라미터 설정 변경  Latin1->utf8
+$set [파라미터 이름] = utf8
+
+- migarte
+- loaddata
+
+
 3. 배포순서 (yaml파일 있는곳에서 실행)
+
+#rds db 올리기 (먼저올리기)
+$kubectl apply -f rds_svc.yaml
 
 # 장고 app 올리기
 $kubectl apply -f django_deploy.yml
 
 # 장고 service 올리기
 $kubectl apply -f django_svc.yml
-
-#rds db 올리기
-$kubectl apply -f rds_svc.yaml
 
 #react app 올리기
 $kubectl apply -f react_deploy.yml
@@ -45,6 +53,7 @@ $mysql -h movieapp.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com -u movie_app -p
 
 PWD: [RDS만들때 password입력]
 
+*주의: 리액트 도커 이미지를 만들때 지금만든다! 왜냐하면 env.production 에 url을 엔드포인트 주소를 줘야하기 때문이다.
 
 ##mysql 데이터베이스생성
 MySQL [(none)]> CREATE DATABASE movie_app;
@@ -63,3 +72,4 @@ MySQL [(none)]> show databases;
 
 ##mysql 나가기
 MySQL [(none)]> exit;
+
