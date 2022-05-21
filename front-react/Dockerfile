@@ -28,7 +28,7 @@ copy . /usr/src/app
 # start and/or build app
 RUN npm run build
 
-FROM nginx:1.20.1
+FROM nginx:1.21.1
 
 # Remove default nginx static resources
 ## nignx 기본 default.conf 삭제

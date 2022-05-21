@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
     - name: centos
-      image: ljk0509/ljk_django:v1
+      image: ljk0509/centos:v1
       ports:
         - containerPort: 80

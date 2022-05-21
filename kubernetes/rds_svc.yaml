@@ -4,6 +4,6 @@ metadata:
   name: mysql-svc
 spec:
   type: ExternalName
-  externalName: movieapp.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com ##RDS 엔드포인트
+  externalName: movie-app2.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com ##RDS 엔드포인트
   ports:
     - port: 3306

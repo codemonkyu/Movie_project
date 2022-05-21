@@ -20,13 +20,13 @@ docker run --name mysql-svc -d --net msanet --net-alias=mysql-svc \
 -v /work/test3/db/conf:/etc/mysql/conf.d \
 -e MYSQL_ROOT_PASSWORD='mysqlroot' \
 -e MYSQL_DATABASE='netcha' \
--e MYSQL_USER='python' \
--e MYSQL_PASSWORD='python' \
+-e MYSQL_USER='movie' \
+-e MYSQL_PASSWORD='movie' \
 -e MYSQL_ROOT_HOST='%' \
 mysql:5.7
 
 #server - Django
-docker run --name mywas -d -p 8000:8000 --net msanet --net-alias=mywas ljk0509/project:netcha 
+docker run --name mywas -d -p 8000:8000 --net msanet --net-alias=mywas ljk0509/project:netcha_v1
 
 #client - reactJS
-docker run --name myweb -d -p 80:80 --net msanet ljk0509/project:react_netch_v1
+docker run --name myweb -d -p 80:80 --net msanet ljk0509/project:react

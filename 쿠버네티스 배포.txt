@@ -12,6 +12,7 @@ kubernetes 배포 순서
 - 데이터베이스 포트 :3306
 - 데이터베이스인증옵션: 암호인증
 
+## 5.7.37버전은 기본 character set이 latin1임 그래서 utf8로수정해줘야함 만약 아래 방법이 잘안되면 그냥 버전up을 해주자!
 - DB만들기
 - 파라미터 설정 변경  Latin1->utf8
 $set [파라미터 이름] = utf8
@@ -22,20 +23,14 @@ $set [파라미터 이름] = utf8
 
 3. 배포순서 (yaml파일 있는곳에서 실행)
 
+1 rds-svc 올리기
+2 centos 올리기
+3 centos pod접속해서 rds에 mysql db만들기
+4 django svc -> deploy
+5 react svc -> deploy
+
 #rds db 올리기 (먼저올리기)
 $kubectl apply -f rds_svc.yaml
-
-# 장고 app 올리기
-$kubectl apply -f django_deploy.yml
-
-# 장고 service 올리기
-$kubectl apply -f django_svc.yml
-
-#react app 올리기
-$kubectl apply -f react_deploy.yml
-
-#react service올리기
-$kubectl apply -f react_svc.yml
 
 #centos로 올리기 ( 접속해서 rds에 아이디 만드는 용도 )
 $kubectl apply -f centospod.yml
@@ -47,22 +42,27 @@ $kubectl exec -it centos -- sh
 $yum install mysql mysql-* -y
 
 #rds 엔드포인트 접속
-$mysql -h movieapp.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com -u movie_app -p
+$mysql -u movieapp -p -h movie-app2.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com
 
-#$mysql -h movieapp.czb1hdtr33mt.ap-northeast-3.rds.amazonaws.com -u [RDS 사용자이름] -p
+#$mysql -u [RDS 사용자이름] -p -h [RDS 엔드포인트]
 
-PWD: [RDS만들때 password입력]
+PWD: [RDS만들때 ID, password입력]
+id: movieapp
+pw: movieapp
 
-*주의: 리액트 도커 이미지를 만들때 지금만든다! 왜냐하면 env.production 에 url을 엔드포인트 주소를 줘야하기 때문이다.
+*주의: 리액트 도커 이미지를 만들 때 env.production 에 url을 엔드포인트 주소를 준다.
 
-##mysql 데이터베이스생성
+##mysql 데이터베이스생성 (장고에 연결할 Mysql 이름과 같아야한다.)
 MySQL [(none)]> CREATE DATABASE movie_app;
 
 ##데이터 베이스 사용할 유저 생성
-MySQL [(none)]> CREATE USER 'movie'@'%' IDENTIFIED BY 'movie';
+## '%'의 의미는 외부에서의 접근을 의미
+### 장고에서 host를 mysql-svc로 주었다.
+#### 장고에서 db이름과 pw를 movieapp으로 주었다.
+MySQL [(none)]> CREATE USER 'movieapp'@'mysql-svc' IDENTIFIED BY 'movieapp';
 
 ##데이터 베이스 권한 주기 
-MySQL [(none)]> GRANT ALL PRIVILEGES ON movie_app.* TO 'movie'@'%';
+MySQL [(none)]> GRANT ALL PRIVILEGES ON movie_app.* TO 'movieapp'@'mysql-svc';
 
 ##권한 주기
 MySQL [(none)]> flush privileges;
@@ -72,4 +72,25 @@ MySQL [(none)]> show databases;
 
 ##mysql 나가기
 MySQL [(none)]> exit;
+
+
+# 장고 service 올리기
+$kubectl apply -f django_svc.yml
+
+# 장고 app 올리기
+##pod 오류 시 kubectl logs [pod컨테이너명] 으로 확인하자 ...!!
+$kubectl apply -f django_deploy.yml
+
+
+
+#react service올리기
+## djnago-svc의 external-ip를 production url에 줘야함 8000포트 붙여서
+$kubectl apply -f react_svc.yml
+
+#react app 올리기
+$kubectl apply -f react_deploy.yml
+
+
+
+
 

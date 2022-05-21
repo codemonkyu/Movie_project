@@ -6,14 +6,14 @@ spec:
   selector:
     matchLabels:
       app: django
-  replicas: 1    
+  replicas: 1
   template:
     metadata:
       labels:
         app: django
     spec:
       containers:
-      - name: django
-        image: ljk0509/ljk_django:movie_app
-        ports:
-        - containerPort: 8000
+        - name: django
+          image: ljk0509/project:netcha_v4
+          ports:
+            - containerPort: 8000
