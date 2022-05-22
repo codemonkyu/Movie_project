@@ -54,13 +54,30 @@
 ## 📚주요기능
 
 - 로그인 / 회원가입 기능
+  ![register login](https://user-images.githubusercontent.com/98939242/169698476-3de83ab1-50f1-4560-a6c8-faa29905b6ee.gif)
+  <br>
 - 메인페이지 / 배너 기능
+  ![mainpage](https://user-images.githubusercontent.com/98939242/169698428-9f516959-a73b-40e3-999b-28f2558e7178.gif)
+  <br>
 - 장르 검색 기능
+  ![search_action](https://user-images.githubusercontent.com/98939242/169698517-83b59864-8cd9-4b6c-ae28-d659fceb639d.gif)
+  <br>
 - 키워드 검색 기능
+  ![search_keyword(좋아요까지한번에)](https://user-images.githubusercontent.com/98939242/169698526-002e7132-7538-4c64-8b25-0e1a5a433da0.gif)
+  <br>
 - 좋아요 기능 / 내가 찜한 페이지
+  ![like](https://user-images.githubusercontent.com/98939242/169698402-4c17232b-f14a-4353-a0af-511dcbafb36b.gif)
+  <br>
 - 리뷰 작성 & 수정 & 삭제 기능
+  ![review](https://user-images.githubusercontent.com/98939242/169698513-65ef7952-4460-4e90-aad7-99df83e4e037.gif)
+  <br>
+
 - 추천 기능
+  ![recommend](https://user-images.githubusercontent.com/98939242/169698464-35e668b0-0595-48c8-ad80-7284be2332f3.gif)
+  <br>
+
 - Youtube 검색기능
+  ![youtube_api](https://user-images.githubusercontent.com/98939242/169698533-8f6694e7-b909-4803-8b0a-d5443ad71533.gif)
 
 ---
 
