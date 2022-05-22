@@ -40,10 +40,11 @@
 
 ---
 
-ERD
+<B>ERD</B>
 ![image](https://user-images.githubusercontent.com/98939242/169684192-a5c55c8d-f841-4826-b769-e1c6000cf5d2.png)
 
-Flow chart
+<B>Flow chart</B>
+
 ![image](https://user-images.githubusercontent.com/98939242/169684225-6b82d81e-4afa-41e2-813e-6dcf6c05da40.png)
 
 ![image](https://user-images.githubusercontent.com/98939242/169684239-b4c91396-5372-46d0-a6e2-77640e387fed.png)
