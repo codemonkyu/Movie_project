@@ -84,10 +84,12 @@
   <br>
 
 - 추천 기능
+
   ![recommend](https://user-images.githubusercontent.com/98939242/169698464-35e668b0-0595-48c8-ad80-7284be2332f3.gif)
   <br>
 
 - Youtube 검색기능
+
   ![youtube_api](https://user-images.githubusercontent.com/98939242/169698533-8f6694e7-b909-4803-8b0a-d5443ad71533.gif)
 
 * [기능별 API 설명](https://ivy-feather-a16.notion.site/NETCHA-MOVIES-ACCOUNTS-API-back-992e2f31830d4edcaefcce9c5bc53aaf)
