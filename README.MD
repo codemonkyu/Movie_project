@@ -54,8 +54,10 @@
 ## 📚주요기능
 
 - 로그인 / 회원가입 기능
+
   ![register login](https://user-images.githubusercontent.com/98939242/169698476-3de83ab1-50f1-4560-a6c8-faa29905b6ee.gif)
   <br>
+
 - 메인페이지 / 배너 기능
   ![mainpage](https://user-images.githubusercontent.com/98939242/169698428-9f516959-a73b-40e3-999b-28f2558e7178.gif)
   <br>
