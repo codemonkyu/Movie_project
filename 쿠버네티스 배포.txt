@@ -2,12 +2,12 @@ kubernetes 배포 순서
 
 1. EKS 클러스터 만들기 
 - aws cli 설치하기
-- 명령어
+- 명령어 (Kube config)
 * eksctl create cluster --name 클러스터이름 --region 리전명 --with-oidc --ssh-public-key ssh키이름 
 --nodes 갯수(예:2) --node-type 노드타입(예:t3.medium) --node-volume-size= 크기(예:20) --managed
 
 2. RDS console -> DB 설정 -> DB만들기 
-- mysql선택 (버전 5.7.37)
+- mysql선택 (버전 5.7.37 x -> 8.0 이상으로 만들어야함)
 - 템플릿 : 프로덕션
 - DB이름 / 사용자 이름 / PW (*사용자이름 PW 기억하기!)
 - 인스턴스 기본
